@@ -10,78 +10,78 @@ const achievementsList = [
     icon: FaDatabase,
     date: '2025',
     bullets: [
-      'Successfully completed intensive, certified bootcamp in Data Analytics and Algorithms.',
-      'Designed a multi-table SQL query system optimization resolving database lag by 40%.',
-      'Engineered localized predictive intelligence scripts using core C/C++ structures.'
+      'Completed an intensive certified bootcamp covering Data Analytics, Algorithms, and C/C++ programming.',
+      'Designed relational SQL schemas and wrote optimised queries across multi-table datasets.',
+      'Built data visualisation modules using Microsoft Power BI for analytics presentations.',
     ],
-    color: '#00F2FE' // Primary Cyan
+    color: '#00F2FE',
   },
   {
     id: 2,
-    title: 'Web3 University Hackathon Runner-Up',
+    title: 'Web3 University Hackathon Participant',
     icon: FaLaptopCode,
     date: '2025',
     bullets: [
-      'Built a decentralized, verifiable voting protocol using Solidity within a 36-hour sprint.',
-      'Pioneered instant client-side rendering connecting Metamask wallets in under 2 seconds.',
-      'Recognized for exceptional contract gas efficiency and UI cleanliness.'
+      'Built a decentralized on-chain voting system using Solidity within a 36-hour hackathon sprint.',
+      'Implemented MetaMask wallet connection and real-time transaction status feedback in React.',
+      'Received positive feedback from judges on contract efficiency and interface clarity.',
     ],
-    color: '#7928CA' // Secondary Purple
+    color: '#7928CA',
   },
   {
     id: 3,
-    title: '15+ Solidity Smart Contracts Deployed',
+    title: 'Smart Contract Developer',
     icon: SiSolidity,
-    date: '2024 - 2025',
+    date: '2024 – Present',
     bullets: [
-      'Constructed secure multi-sigs, escrow lockers, staking protocols, and NFT collections.',
-      'Conducted security audits looking for reentrancy, overflow, and denial-of-service vulnerabilities.',
-      'Achieved a zero-critical-issue rating across mock stress-tests in Hardhat environments.'
+      'Independently built and deployed multiple Solidity contracts to local Hardhat testnets.',
+      'Practised security reviews for reentrancy, integer overflow, and ownership vulnerabilities.',
+      'Covered smart contract testing through unit test suites using Chai and Hardhat.',
     ],
-    color: '#FF0080' // Neon Accent Pink
+    color: '#A855F7',
   },
   {
     id: 4,
-    title: 'Academic Blockchain Pioneer Scholar',
+    title: 'B.Sc Blockchain Technology Student',
     icon: FaAward,
-    date: '2025 - Present',
+    date: '2025 – Present',
     bullets: [
-      'Leading peer research on Savitribai Phule University consensus algorithm benchmarks.',
-      'Mentoring 15+ student peers in setting up local Hardhat nodes and compiling scripts.',
-      'Top-tier marks in academic examinations focusing on cryptographic fundamentals.'
+      'Pursuing a specialised undergraduate degree in Blockchain Technology at SPPU, Pune.',
+      'Actively participating in campus Web3 club discussions and peer study sessions.',
+      'Studying cryptographic primitives, distributed consensus, and Solidity contract engineering.',
     ],
-    color: '#0052FF' // Coinbase Blue
-  }
+    color: '#0052FF',
+  },
 ];
 
 const Achievements = () => {
   return (
-    <section id="achievements" className="py-24 relative overflow-hidden bg-dark-lighter/50">
+    <section id="achievements" aria-labelledby="achievements-heading" className="py-24 relative overflow-hidden bg-dark-lighter/50">
       {/* Visual background lights */}
-      <div className="absolute top-[20%] right-[10%] w-[320px] h-[320px] bg-primary/5 rounded-full blur-[90px] pointer-events-none" />
-      <div className="absolute bottom-[20%] left-[10%] w-[330px] h-[330px] bg-secondary/5 rounded-full blur-[85px] pointer-events-none" />
+      <div className="absolute top-[20%] right-[10%] w-[320px] h-[320px] bg-primary/5 rounded-full blur-[90px] pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-[20%] left-[10%] w-[330px] h-[330px] bg-secondary/5 rounded-full blur-[85px] pointer-events-none" aria-hidden="true" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
+
         {/* Title */}
         <div className="text-center mb-16">
-          <motion.h2 
+          <motion.h2
+            id="achievements-heading"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-extrabold text-white uppercase tracking-wider relative inline-block"
           >
             Achievements
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-20 h-[3px] bg-primary rounded-full shadow-[0_0_8px_#00F2FE]" />
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-20 h-[3px] bg-primary rounded-full shadow-[0_0_8px_#00F2FE]" aria-hidden="true" />
           </motion.h2>
-          <p className="text-gray-400 text-sm mt-4 tracking-widest font-mono">ECOSYSTEM CONTRIBUTIONS & HONORS</p>
+          <p className="text-gray-400 text-sm mt-4 tracking-widest font-mono">MILESTONES & CONTRIBUTIONS</p>
         </div>
 
-        {/* Grid layout */}
+        {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {achievementsList.map((ach, idx) => {
             const Icon = ach.icon;
-            
             return (
               <motion.div
                 key={ach.id}
@@ -91,35 +91,31 @@ const Achievements = () => {
                 transition={{ type: 'spring', stiffness: 90, damping: 15, delay: idx * 0.15 }}
                 className="glassmorphism rounded-2xl p-6 md:p-8 border border-white/5 shadow-xl glassmorphism-hover flex gap-6 items-start"
               >
-                {/* Neon Icon Container */}
-                <div 
+                {/* Icon */}
+                <div
                   className="p-4 rounded-2xl flex-shrink-0 text-2xl"
-                  style={{ 
-                    backgroundColor: `${ach.color}15`, 
+                  style={{
+                    backgroundColor: `${ach.color}15`,
                     color: ach.color,
                     border: `1px solid ${ach.color}35`,
-                    boxShadow: `0 0 15px ${ach.color}20` 
+                    boxShadow: `0 0 15px ${ach.color}20`,
                   }}
+                  aria-hidden="true"
                 >
                   <Icon />
                 </div>
 
-                {/* Details List */}
+                {/* Content */}
                 <div className="space-y-3">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                    <h3 className="text-lg font-bold text-white tracking-wide">
-                      {ach.title}
-                    </h3>
-                    <span className="text-[10px] font-mono font-bold text-gray-500 uppercase flex-shrink-0">
-                      {ach.date}
-                    </span>
+                    <h3 className="text-lg font-bold text-white tracking-wide">{ach.title}</h3>
+                    <span className="text-[10px] font-mono font-bold text-gray-500 uppercase flex-shrink-0">{ach.date}</span>
                   </div>
-
                   <ul className="space-y-2">
                     {ach.bullets.map((bullet, bIdx) => (
                       <li key={bIdx} className="text-gray-400 text-xs md:text-sm leading-relaxed flex items-start gap-2.5">
-                        <span className="text-primary mt-1 text-[10px]" style={{ color: ach.color }}>▶</span>
-                        <span>{bullet}</span>
+                        <span className="mt-1 text-[10px] flex-shrink-0" style={{ color: ach.color }} aria-hidden="true">▶</span>
+                        {bullet}
                       </li>
                     ))}
                   </ul>

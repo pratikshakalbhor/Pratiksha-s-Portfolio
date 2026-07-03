@@ -1,50 +1,58 @@
 export const experienceList = [
   {
     id: 1,
-    role: 'BSc Blockchain Candidate',
+    role: 'B.Sc Blockchain Technology',
     company: 'Savitribai Phule Pune University',
-    duration: '2025 - Present',
-    description: 'Diving deep into blockchain architectures, consensus algorithms, cryptographic primitives, smart contract auditing, and database organization principles. Engaging in on-campus Web3 clubs.',
+    duration: '2025 – Present',
+    type: 'academic',
+    description:
+      'Pursuing a specialised undergraduate degree focused on cryptographic primitives, distributed ledger theory, Solidity smart contract engineering, and relational database management. Actively participating in the on-campus Web3 club.',
     highlights: [
-      'Mastering Core Cryptography and Decentralization models',
-      'Hands-on labs on Solidity and Smart Contract security patterns',
-      'Integration of relational databases (SQL) with smart contract analytics'
-    ]
+      'Core coursework: Cryptography, Consensus Algorithms, Solidity, Database Systems',
+      'Hands-on laboratory sessions covering smart contract compilation and local testnet deployment',
+      'Studying security patterns such as checks-effects-interactions and pull payment',
+    ],
   },
   {
     id: 2,
-    role: 'Smart Contract Developer & Tinkerer',
-    company: 'Web3 Ecosystem & Hackathons',
-    duration: '2025 - Present',
-    description: 'Developing decentralized application prototypes, contributing to open-source protocols, and iterating on localized smart contract deployments using Hardhat and Web3 interfaces.',
+    role: 'Smart Contract & DApp Development',
+    company: 'Personal Projects',
+    duration: '2024 – Present',
+    type: 'project',
+    description:
+      'Self-directed development of decentralised applications covering escrow systems, NFT marketplaces, multi-signature wallets, and token reward platforms. Each project follows a full development cycle: design, implementation, testing, and testnet deployment.',
     highlights: [
-      'Built multi-signature trust lockers and decentralized review networks',
-      'Pioneered interactive dashboards integrating Ethers.js and React',
-      'Won runner-up at local university developer hackathon'
-    ]
+      'Built and tested contracts with Hardhat and Ethers.js',
+      'Connected React frontends to Ethereum via MetaMask and Ethers.js providers',
+      'Explored IPFS via Pinata for decentralised file storage',
+    ],
   },
   {
     id: 3,
-    role: 'Bootcamp Participant',
+    role: 'Coding Bootcamp Participant',
     company: 'Samsung Innovation Campus',
     duration: '2025',
-    description: 'An intensive, certified technical training program centered on data analysis, machine learning foundations, algorithms, and SQL database designs.',
+    type: 'bootcamp',
+    description:
+      'Completed an intensive, certified training programme focusing on data analysis, algorithmic problem-solving, SQL schema design, and structured programming with C/C++.',
     highlights: [
-      'Architected complex relational SQL schemas for enterprise tracking',
-      'Solved data-structure problems using optimized code in C/C++',
-      'Collaborated on data presentation modules using Microsoft Power BI'
-    ]
+      'Designed multi-table relational schemas and wrote optimised SQL queries',
+      'Solved algorithmic challenges using C++ data structures',
+      'Built data presentation modules using Microsoft Power BI',
+    ],
   },
   {
     id: 4,
-    role: 'Self-Taught Front-End Developer',
-    company: 'Open Source Development',
-    duration: '2024 - 2025',
-    description: 'Formed a strong foundational expertise in responsive page layout engineering, UI animations, and modular web styling.',
+    role: 'Self-Taught Frontend Developer',
+    company: 'Self Learning',
+    duration: '2023 – 2024',
+    type: 'selflearning',
+    description:
+      'Built a solid foundation in responsive web development through online courses, documentation, and project-based practice. Progressed from vanilla HTML/CSS/JS to component-based React applications.',
     highlights: [
-      'Built 10+ reactive single page portals using HTML5, CSS3, and JavaScript',
-      'Adopted utility styling frameworks such as Tailwind CSS for mobile responsiveness',
-      'Maintained version control histories for codebases on GitHub'
-    ]
-  }
+      'Completed freeCodeCamp Responsive Web Design and JavaScript Algorithms certifications',
+      'Built 10+ static and dynamic pages using HTML5, CSS3, and JavaScript',
+      'Adopted Tailwind CSS and Git/GitHub for modern, versioned workflows',
+    ],
+  },
 ];
