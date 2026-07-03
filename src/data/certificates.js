@@ -1,38 +1,38 @@
 export const certificatesList = [
   {
     id: 1,
-    title: 'Samsung Innovation Campus',
-    issuer: 'Samsung / Savitribai Phule University',
+    title: 'Samsung Innovation Campus — Coding & Data Analytics',
+    issuer: 'Samsung / Savitribai Phule Pune University',
     date: '2025',
     credentialId: 'SIC-CODING-99482',
     link: '#',
-    category: 'Coding & Data Analytics'
+    category: 'Bootcamp',
   },
   {
     id: 2,
     title: 'Blockchain Architecture & Smart Contracts',
-    issuer: 'ConsenSys Academy / Coursera Certificate',
+    issuer: 'ConsenSys Academy / Coursera',
     date: '2025',
     credentialId: 'CCA-SMART-88291',
     link: '#',
-    category: 'Blockchain'
+    category: 'Blockchain',
   },
   {
     id: 3,
-    title: 'Advanced Database Systems & SQL querying',
-    issuer: 'Sololearn & University Database Labs',
+    title: 'Advanced SQL & Database Systems',
+    issuer: 'Sololearn',
     date: '2025',
     credentialId: 'SOL-SQL-39401',
     link: '#',
-    category: 'Databases'
+    category: 'Databases',
   },
   {
     id: 4,
-    title: 'Front-End Web Development & Responsive UI',
-    issuer: 'FreeCodeCamp / Meta Front-End',
+    title: 'Responsive Web Design',
+    issuer: 'freeCodeCamp',
     date: '2024',
-    credentialId: 'FCC-RESP-12845',
-    link: '#',
-    category: 'Frontend'
-  }
+    credentialId: 'FCC-RWD-12845',
+    link: 'https://www.freecodecamp.org/certification/pratikshakalbhor/responsive-web-design',
+    category: 'Frontend',
+  },
 ];
