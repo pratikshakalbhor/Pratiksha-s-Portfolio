@@ -27,7 +27,7 @@ const Skills = () => {
             My <span className="text-primary text-glow-cyan">Skills</span>
             <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-20 h-[3px] bg-primary rounded-full shadow-[0_0_8px_#00F2FE]" aria-hidden="true" />
           </motion.h2>
-          <p className="text-gray-400 text-sm mt-4 tracking-widest font-mono">TECHNOLOGIES I WORK WITH</p>
+          <p className="text-gray-400 text-sm mt-6 tracking-widest font-mono">TECHNOLOGIES I WORK WITH</p>
         </div>
 
         {/* Categories */}
@@ -53,7 +53,7 @@ const Skills = () => {
                   </div>
                 </div>
 
-                {/* Skill Badge Grid */}
+                {/* Skill Badge Grid — glowing chips */}
                 <div className="flex flex-wrap gap-3" role="list" aria-label={`${category.title} skills`}>
                   {category.skills.map((skill, skillIdx) => {
                     const SkillIcon = skill.icon;
@@ -65,12 +65,23 @@ const Skills = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: catIdx * 0.05 + skillIdx * 0.05, type: 'spring', stiffness: 200, damping: 20 }}
-                        whileHover={{ y: -4, transition: { duration: 0.15 } }}
-                        className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl glassmorphism border border-white/8 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 cursor-default group"
+                        whileHover={{
+                          y: -5,
+                          scale: 1.08,
+                          boxShadow: '0 0 18px rgba(0, 242, 254, 0.45)',
+                          borderColor: 'rgba(0, 242, 254, 0.6)',
+                          transition: { duration: 0.15 }
+                        }}
+                        className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl glassmorphism border border-white/8 transition-all duration-300 cursor-default group"
+                        style={{ willChange: 'transform, box-shadow' }}
                       >
-                        <span className="text-base text-primary/70 group-hover:text-primary transition-colors duration-300" aria-hidden="true">
+                        <motion.span
+                          className="text-base text-primary/70 group-hover:text-primary transition-colors duration-300"
+                          whileHover={{ scale: 1.3, rotate: 5 }}
+                          aria-hidden="true"
+                        >
                           <SkillIcon />
-                        </span>
+                        </motion.span>
                         <span className="text-sm font-medium text-gray-200 group-hover:text-white transition-colors duration-300">
                           {skill.name}
                         </span>
