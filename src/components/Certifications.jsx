@@ -145,7 +145,7 @@ const Certifications = () => {
             autoplay={{ delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true }}
             navigation={{ prevEl: '.cert-prev', nextEl: '.cert-next' }}
             breakpoints={{
-              640:  { slidesPerView: 2 },
+              640: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
             }}
             className="py-6 px-2"

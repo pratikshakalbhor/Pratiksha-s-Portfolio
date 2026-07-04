@@ -29,19 +29,19 @@
     overflow-x: hidden;
   }
   
-  /* Hide standard cursor for devices with mouse pointer */
+  /* Keep standard cursor visible for accessibility and ease of selection */
   @media (pointer: fine) {
     body.custom-cursor-active {
-      cursor: none;
+      cursor: default;
     }
-    body.custom-cursor-active a, 
+    body.custom-cursor-active a,
     body.custom-cursor-active button,
+    body.custom-cursor-active [role="button"] {
+      cursor: pointer;
+    }
     body.custom-cursor-active input,
-    body.custom-cursor-active textarea,
-    body.custom-cursor-active select,
-    body.custom-cursor-active [role="button"],
-    body.custom-cursor-active iframe {
-      cursor: none;
+    body.custom-cursor-active textarea {
+      cursor: text;
     }
   }
 }

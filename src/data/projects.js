@@ -14,7 +14,7 @@ export const projectsList = [
       'Dashboard',
     ],
     tags: ['React.js', 'JavaScript', 'Solidity', 'Hardhat', 'MongoDB', 'Tailwind CSS'],
-    github: 'https://github.com/pratiksha-kalbhor/ecochain',
+    github: 'https://github.com/pratikshakalbhor/ecochain',
     demo: 'https://ecochain-tracker.vercel.app',
   },
   {
@@ -31,8 +31,8 @@ export const projectsList = [
       'Client & Freelancer Dashboard',
     ],
     tags: ['Solidity', 'React.js', 'Hardhat', 'Ethers.js', 'MongoDB'],
-    github: 'https://github.com/pratiksha-kalbhor/freelance-chain',
-    demo: 'https://freelancechain-dapp.vercel.app',
+    github: 'https://github.com/pratikshakalbhor/FreelanceChain',
+    demo: 'https://freelancechain-dapp.vercel.app/',
   },
   {
     id: 'nft-dapp',
@@ -48,7 +48,7 @@ export const projectsList = [
       'NFT Gallery',
     ],
     tags: ['Solidity', 'React.js', 'Hardhat', 'IPFS', 'MetaMask'],
-    github: 'https://github.com/pratiksha-kalbhor/nft-dapp',
+    github: 'https://github.com/pratikshakalbhor/nft-dapp',
     demo: 'https://nft-dapp-demo.vercel.app',
   },
   {
@@ -65,8 +65,8 @@ export const projectsList = [
       'Verification Dashboard',
     ],
     tags: ['Solidity', 'React.js', 'MongoDB', 'JavaScript'],
-    github: 'https://github.com/pratiksha-kalbhor/dataproof',
-    demo: 'https://dataproof-dapp.vercel.app',
+    github: 'https://github.com/pratikshakalbhor/DataProof',
+    demo: 'https://file-proof.vercel.app/',
   },
   {
     id: 'tokenomics',
@@ -77,7 +77,7 @@ export const projectsList = [
     image: null,
     features: [],
     tags: ['Solidity', 'Hardhat'],
-    github: 'https://github.com/pratiksha-kalbhor/tokenomics-contracts',
+    github: 'https://github.com/pratikshakalbhor/tokenomics-contracts',
     demo: null,
   },
   {
@@ -89,7 +89,7 @@ export const projectsList = [
     image: null,
     features: [],
     tags: ['JavaScript', 'Blockchain'],
-    github: 'https://github.com/pratiksha-kalbhor/distributed-systems-practicals',
+    github: 'https://github.com/pratikshakalbhor/distributed-systems-practicals',
     demo: null,
   },
 ];

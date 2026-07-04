@@ -4,10 +4,10 @@ import { FaCalendarAlt, FaBook, FaCode, FaLaptopCode, FaUser } from 'react-icons
 import { experienceList } from '../data/experience';
 
 const typeConfig = {
-  academic:     { icon: FaBook,       color: '#00F2FE', label: 'Academic' },
-  project:      { icon: FaCode,       color: '#A855F7', label: 'Project' },
-  bootcamp:     { icon: FaLaptopCode, color: '#05FFCC', label: 'Bootcamp' },
-  selflearning: { icon: FaUser,       color: '#0052FF', label: 'Self-Learning' },
+  academic: { icon: FaBook, color: '#00F2FE', label: 'Academic' },
+  project: { icon: FaCode, color: '#A855F7', label: 'Project' },
+  bootcamp: { icon: FaLaptopCode, color: '#05FFCC', label: 'Bootcamp' },
+  selflearning: { icon: FaUser, color: '#0052FF', label: 'Self-Learning' },
 };
 
 const Experience = () => {
@@ -117,5 +117,4 @@ const Experience = () => {
     </section>
   );
 };
-
 export default Experience;

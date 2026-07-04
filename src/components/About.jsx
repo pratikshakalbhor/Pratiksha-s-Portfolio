@@ -186,9 +186,8 @@ const About = () => {
                   aria-controls={`tab-panel-${tab.id}`}
                   id={`tab-${tab.id}`}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`py-3 px-4 font-mono text-sm tracking-wider transition-colors duration-300 relative uppercase font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-t ${
-                    activeTab === tab.id ? 'text-primary' : 'text-gray-500 hover:text-gray-300'
-                  }`}
+                  className={`py-3 px-4 font-mono text-sm tracking-wider transition-colors duration-300 relative uppercase font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-t ${activeTab === tab.id ? 'text-primary' : 'text-gray-500 hover:text-gray-300'
+                    }`}
                 >
                   {tab.label}
                   {activeTab === tab.id && (
@@ -218,5 +217,4 @@ const About = () => {
     </section>
   );
 };
-
 export default About;

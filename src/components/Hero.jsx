@@ -298,7 +298,7 @@ const Hero = () => {
             <span className="text-xs text-gray-500 font-mono uppercase tracking-widest">Connect:</span>
             <div className="flex gap-4">
               <a
-                href="https://github.com/pratiksha-kalbhor"
+                href="https://github.com/pratikshakalbhor"
                 target="_blank"
                 rel="noreferrer"
                 className="text-gray-400 hover:text-primary hover:scale-110 transition-all duration-300 text-2xl"
@@ -307,7 +307,7 @@ const Hero = () => {
                 <FaGithub />
               </a>
               <a
-                href="https://linkedin.com/in/pratiksha-kalbhor"
+                href="https://www.linkedin.com/in/pratikshakalbhor/"
                 target="_blank"
                 rel="noreferrer"
                 className="text-gray-400 hover:text-primary hover:scale-110 transition-all duration-300 text-2xl"

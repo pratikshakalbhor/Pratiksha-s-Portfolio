@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaStar, FaCodeBranch, FaCircle } from 'react-icons/fa';
 import { TbGitFork } from 'react-icons/tb';
 
-const GITHUB_USERNAME = 'pratiksha-kalbhor';
+const GITHUB_USERNAME = 'pratikshakalbhor';
 
 const REPO_NAMES = [
   'ecochain',
@@ -15,15 +15,15 @@ const REPO_NAMES = [
 ];
 
 const LANGUAGE_COLORS = {
-  Solidity:   '#AA6746',
+  Solidity: '#AA6746',
   JavaScript: '#F7DF1E',
   TypeScript: '#3178C6',
-  Python:     '#3572A5',
-  HTML:       '#E44B23',
-  CSS:        '#563D7C',
-  Rust:       '#DEA584',
-  Go:         '#00ADD8',
-  default:    '#8B949E',
+  Python: '#3572A5',
+  HTML: '#E44B23',
+  CSS: '#563D7C',
+  Rust: '#DEA584',
+  Go: '#00ADD8',
+  default: '#8B949E',
 };
 
 const FALLBACK_REPOS = REPO_NAMES.map((name) => ({
@@ -32,14 +32,14 @@ const FALLBACK_REPOS = REPO_NAMES.map((name) => ({
     name === 'ecochain'
       ? 'Blockchain-based platform for tree plantation, carbon credit tracking, and environmental transparency.'
       : name === 'freelance-chain'
-      ? 'Decentralized freelancing platform with Solidity escrow and milestone-based payments.'
-      : name === 'nft-dapp'
-      ? 'Decentralized NFT application for minting, managing, and exploring NFTs on Ethereum.'
-      : name === 'dataproof'
-      ? 'Blockchain document verification system for secure, tamper-proof validation of digital records.'
-      : name === 'tokenomics-contracts'
-      ? 'Solidity smart contracts implementing ERC-20 tokens, staking, and reward mechanisms.'
-      : 'University coursework covering distributed systems concepts and blockchain fundamentals.',
+        ? 'Decentralized freelancing platform with Solidity escrow and milestone-based payments.'
+        : name === 'nft-dapp'
+          ? 'Decentralized NFT application for minting, managing, and exploring NFTs on Ethereum.'
+          : name === 'dataproof'
+            ? 'Blockchain document verification system for secure, tamper-proof validation of digital records.'
+            : name === 'tokenomics-contracts'
+              ? 'Solidity smart contracts implementing ERC-20 tokens, staking, and reward mechanisms.'
+              : 'University coursework covering distributed systems concepts and blockchain fundamentals.',
   html_url: `https://github.com/${GITHUB_USERNAME}/${name}`,
   stargazers_count: 0,
   language: name === 'distributed-systems-practicals' ? 'Python' : 'Solidity',
@@ -119,13 +119,13 @@ const GitHubSection = () => {
         const merged = FALLBACK_REPOS.map((fb) =>
           repoMap[fb.name]
             ? {
-                name: fb.name,
-                description: repoMap[fb.name].description || fb.description,
-                html_url: repoMap[fb.name].html_url,
-                stargazers_count: repoMap[fb.name].stargazers_count,
-                forks_count: repoMap[fb.name].forks_count,
-                language: repoMap[fb.name].language || fb.language,
-              }
+              name: fb.name,
+              description: repoMap[fb.name].description || fb.description,
+              html_url: repoMap[fb.name].html_url,
+              stargazers_count: repoMap[fb.name].stargazers_count,
+              forks_count: repoMap[fb.name].forks_count,
+              language: repoMap[fb.name].language || fb.language,
+            }
             : fb
         );
         setRepos(merged);
@@ -212,5 +212,4 @@ const GitHubSection = () => {
     </section>
   );
 };
-
 export default GitHubSection;

@@ -28,7 +28,7 @@ const Footer = () => {
         {/* Social Vector Grid */}
         <div className="flex items-center gap-6">
           <a 
-            href="https://github.com/pratiksha-kalbhor" 
+            href="https://github.com/pratikshakalbhor" 
             target="_blank" 
             rel="noreferrer" 
             className="text-gray-400 hover:text-primary transition-colors duration-300 text-lg"
@@ -37,7 +37,7 @@ const Footer = () => {
             <FaGithub />
           </a>
           <a 
-            href="https://linkedin.com/in/pratiksha-kalbhor" 
+            href="https://www.linkedin.com/in/pratikshakalbhor/" 
             target="_blank" 
             rel="noreferrer" 
             className="text-gray-400 hover:text-primary transition-colors duration-300 text-lg"
