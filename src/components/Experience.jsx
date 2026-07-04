@@ -32,7 +32,7 @@ const Experience = () => {
             Learning <span className="text-primary text-glow-cyan">Journey</span>
             <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-20 h-[3px] bg-primary rounded-full shadow-[0_0_8px_#00F2FE]" aria-hidden="true" />
           </motion.h2>
-          <p className="text-gray-400 text-sm mt-4 tracking-widest font-mono">ACADEMICS · PROJECTS · BOOTCAMPS · SELF-LEARNING</p>
+          <p className="text-gray-400 text-sm mt-4 tracking-widest font-mono">ACADEMICS · PROJECTS · BOOTCAMPS</p>
         </div>
 
         {/* Timeline Layout */}
@@ -85,18 +85,7 @@ const Experience = () => {
                     </span>
                   </div>
 
-                  <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-6">{exp.description}</p>
-
-                  {/* Highlights */}
-                  <div className="space-y-2">
-                    <h4 className="text-xs font-mono font-bold tracking-widest text-[#00F2FE] uppercase mb-1">Key Highlights:</h4>
-                    {exp.highlights.map((highlight, hIdx) => (
-                      <div key={hIdx} className="flex items-start gap-2.5 text-xs text-gray-400 leading-relaxed">
-                        <span className="text-primary/60 mt-1 flex-shrink-0" aria-hidden="true">▸</span>
-                        <span>{highlight}</span>
-                      </div>
-                    ))}
-                  </div>
+                  <p className="text-gray-400 text-sm md:text-base leading-relaxed">{exp.description}</p>
                 </div>
               </motion.div>
             );

@@ -6,44 +6,34 @@ import { TbGitFork } from 'react-icons/tb';
 
 const featuredRepos = [
   {
+    name: 'ecochain',
+    description: 'Blockchain-based platform for tree plantation, carbon credit tracking, and environmental transparency.',
+    link: 'https://github.com/pratiksha-kalbhor/ecochain',
+  },
+  {
     name: 'freelance-chain',
-    description: 'Decentralized freelancing platform with Solidity escrow contracts and community dispute resolution.',
-    language: 'Solidity',
-    languageColor: '#AA6746',
-    stars: 0,
-    forks: 0,
+    description: 'Decentralized freelancing platform with Solidity escrow and milestone-based payments.',
     link: 'https://github.com/pratiksha-kalbhor/freelance-chain',
-    topics: ['solidity', 'hardhat', 'react', 'ethers-js'],
   },
   {
-    name: 'nft-marketplace-web3',
-    description: 'Gas-optimised NFT marketplace supporting ERC-721 minting, fixed-price listings, and on-chain royalties.',
-    language: 'Solidity',
-    languageColor: '#AA6746',
-    stars: 0,
-    forks: 0,
-    link: 'https://github.com/pratiksha-kalbhor/nft-marketplace-web3',
-    topics: ['nft', 'erc721', 'ipfs', 'react'],
+    name: 'nft-dapp',
+    description: 'Decentralized NFT application for minting, managing, and exploring NFTs on Ethereum.',
+    link: 'https://github.com/pratiksha-kalbhor/nft-dapp',
   },
   {
-    name: 'ecochain-tracker',
-    description: 'Web3 eco-reward system using Chainlink oracles to verify off-chain data before minting ERC-20 tokens.',
-    language: 'JavaScript',
-    languageColor: '#f1e05a',
-    stars: 0,
-    forks: 0,
-    link: 'https://github.com/pratiksha-kalbhor/ecochain-tracker',
-    topics: ['chainlink', 'erc20', 'react', 'tailwindcss'],
+    name: 'dataproof',
+    description: 'Blockchain document verification system for secure, tamper-proof validation of digital records.',
+    link: 'https://github.com/pratiksha-kalbhor/dataproof',
   },
   {
-    name: 'cryptovault-multisig',
-    description: 'M-of-N multi-signature wallet with configurable thresholds, time-locked withdrawals, and an SQL audit trail.',
-    language: 'Solidity',
-    languageColor: '#AA6746',
-    stars: 0,
-    forks: 0,
-    link: 'https://github.com/pratiksha-kalbhor/cryptovault-multisig',
-    topics: ['multisig', 'solidity', 'ethers-js', 'sql'],
+    name: 'tokenomics-contracts',
+    description: 'Solidity smart contracts implementing ERC-20 tokens, staking, and reward mechanisms.',
+    link: 'https://github.com/pratiksha-kalbhor/tokenomics-contracts',
+  },
+  {
+    name: 'distributed-systems-practicals',
+    description: 'University coursework covering distributed systems concepts and blockchain fundamentals.',
+    link: 'https://github.com/pratiksha-kalbhor/distributed-systems-practicals',
   },
 ];
 
@@ -76,26 +66,23 @@ const GitHubSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="glassmorphism rounded-2xl p-6 md:p-8 border border-white/5 shadow-xl mb-10 flex flex-col md:flex-row items-center md:items-start gap-6"
+          className="glassmorphism rounded-2xl p-6 border border-white/5 shadow-xl mb-10 flex flex-col md:flex-row items-center md:items-start gap-6"
         >
           {/* Avatar */}
-          <div className="w-20 h-20 rounded-full border-2 border-primary/40 shadow-[0_0_20px_rgba(0,242,254,0.2)] overflow-hidden flex-shrink-0 bg-[#111827] flex items-center justify-center">
-            <FaGithub className="text-5xl text-gray-500" aria-hidden="true" />
+          <div className="w-16 h-16 rounded-full border border-primary/40 overflow-hidden flex-shrink-0 bg-[#0B0F19] flex items-center justify-center">
+            <FaGithub className="text-4xl text-gray-400" aria-hidden="true" />
           </div>
 
           {/* Profile Info */}
           <div className="text-center md:text-left flex-grow">
-            <h3 className="text-xl font-bold text-white">pratiksha-kalbhor</h3>
-            <p className="text-gray-400 text-sm mt-1">B.Sc Blockchain Technology student · Solidity · React · Hardhat</p>
+            <h3 className="text-lg font-bold text-white font-mono">pratiksha-kalbhor</h3>
+            <p className="text-gray-400 text-sm mt-1">B.Sc Blockchain Technology Student at Savitribai Phule Pune University</p>
             <div className="flex flex-wrap gap-3 mt-4 justify-center md:justify-start">
               <span className="text-xs font-mono text-gray-400 bg-dark border border-white/5 px-3 py-1 rounded-full">
-                📍 Pune, Maharashtra
+                📍 Pune, India
               </span>
               <span className="text-xs font-mono text-gray-400 bg-dark border border-white/5 px-3 py-1 rounded-full">
-                🎓 SPPU — Blockchain Technology
-              </span>
-              <span className="text-xs font-mono text-gray-400 bg-dark border border-white/5 px-3 py-1 rounded-full">
-                ⚡ Web3 Developer
+                🎓 SPPU Student
               </span>
             </div>
           </div>
@@ -105,7 +92,7 @@ const GitHubSection = () => {
             href="https://github.com/pratiksha-kalbhor"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-primary/40 text-primary font-mono text-sm font-semibold hover:bg-primary/10 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-primary/45 text-primary font-mono text-xs font-semibold hover:bg-primary/10 transition-all duration-300 focus:outline-none"
             aria-label="Visit Pratiksha Kalbhor's GitHub profile"
           >
             <FaGithub aria-hidden="true" /> View Profile
@@ -128,35 +115,16 @@ const GitHubSection = () => {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, type: 'spring', stiffness: 100, damping: 15 }}
               whileHover={{ y: -4 }}
-              className="glassmorphism rounded-2xl p-5 border border-white/5 hover:border-primary/30 transition-all duration-300 shadow-lg flex flex-col justify-between gap-4 group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="glassmorphism rounded-2xl p-5 border border-white/5 hover:border-primary/30 transition-all duration-300 shadow-lg flex flex-col justify-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               aria-label={`View ${repo.name} repository on GitHub`}
             >
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="flex items-center gap-2 text-sm font-bold text-primary group-hover:text-white transition-colors duration-300 font-mono">
-                    <FaGithub aria-hidden="true" /> {repo.name}
-                  </span>
-                  <FaExternalLinkAlt size={11} className="text-gray-600 group-hover:text-primary transition-colors duration-300" aria-hidden="true" />
-                </div>
-                <p className="text-gray-400 text-xs leading-relaxed">{repo.description}</p>
-              </div>
-
-              <div className="flex items-center gap-4 text-[11px] font-mono text-gray-500">
-                <span className="flex items-center gap-1.5">
-                  <span className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: repo.languageColor }} aria-hidden="true" />
-                  {repo.language}
+              <div className="flex items-center justify-between">
+                <span className="flex items-center gap-2 text-sm font-bold text-primary group-hover:text-white transition-colors duration-300 font-mono">
+                  <FaGithub aria-hidden="true" /> {repo.name}
                 </span>
-                <span className="flex items-center gap-1"><FaStar size={10} aria-hidden="true" /> {repo.stars}</span>
-                <span className="flex items-center gap-1"><FaCodeBranch size={10} aria-hidden="true" /> {repo.forks}</span>
+                <FaExternalLinkAlt size={11} className="text-gray-600 group-hover:text-primary transition-colors duration-300" aria-hidden="true" />
               </div>
-
-              <div className="flex flex-wrap gap-1.5">
-                {repo.topics.map((topic) => (
-                  <span key={topic} className="text-[10px] font-mono bg-primary/10 border border-primary/20 text-primary px-2 py-0.5 rounded-full">
-                    {topic}
-                  </span>
-                ))}
-              </div>
+              <p className="text-gray-400 text-xs leading-relaxed">{repo.description}</p>
             </motion.a>
           ))}
         </div>

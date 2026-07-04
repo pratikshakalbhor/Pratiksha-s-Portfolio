@@ -29,7 +29,7 @@ const Certifications = () => {
         </div>
 
         {/* Certificate Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {certificatesList.map((cert, index) => (
             <motion.article
               key={cert.id}
@@ -46,39 +46,24 @@ const Certifications = () => {
               </div>
 
               <div>
-                {/* Category & verified badge */}
-                <div className="flex items-center justify-between gap-2 mb-4">
-                  <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-primary/10 border border-primary/20 text-primary tracking-wider uppercase">
-                    {cert.category}
-                  </span>
-                  <span className="flex items-center gap-1 text-[10px] font-mono text-emerald-400 font-semibold uppercase">
-                    <GoVerified className="animate-pulse" aria-hidden="true" /> Verified
-                  </span>
-                </div>
-
                 <h3 className="text-base font-bold text-white tracking-wide group-hover:text-primary transition-colors duration-300 mb-2 leading-relaxed">
                   {cert.title}
                 </h3>
 
-                <p className="text-gray-400 text-xs font-medium mb-3">
+                <p className="text-gray-400 text-xs font-medium mb-6">
                   Issuer: {cert.issuer}
                 </p>
-
-                {/* Credential ID */}
-                <div className="bg-dark/60 border border-white/5 rounded-lg py-1 px-2.5 w-fit mb-6">
-                  <span className="text-[9px] font-mono tracking-wider text-gray-500">ID: {cert.credentialId}</span>
-                </div>
               </div>
 
               {/* Footer: date + view certificate link */}
               <div className="pt-4 border-t border-white/5 flex items-center justify-between z-10">
-                <span className="text-[10px] font-mono text-gray-500">Issued: {cert.date}</span>
+                <span className="text-[10px] font-mono text-gray-500 font-semibold text-secondary">Year: {cert.date}</span>
 
                 <a
                   href={cert.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-primary hover:text-white transition-colors duration-300 font-mono font-semibold flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
+                  className="text-xs text-primary hover:text-white transition-colors duration-300 font-mono font-semibold flex items-center gap-1.5 focus:outline-none"
                   aria-label={`View certificate for ${cert.title}`}
                 >
                   View Certificate <FaExternalLinkAlt size={9} aria-hidden="true" />

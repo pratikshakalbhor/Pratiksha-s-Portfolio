@@ -6,15 +6,16 @@ import {
   SiTailwindcss,
   SiGit,
   SiGithub,
-  SiPostgresql,
   SiMongodb,
   SiPostman,
-  SiFigma,
   SiWeb3Dotjs,
+  SiVite,
+  SiGo,
+  SiRust,
 } from 'react-icons/si';
 
-import { FaHardHat, FaCss3Alt, FaHtml5 } from 'react-icons/fa';
-import { TbHexagon, TbLock } from 'react-icons/tb';
+import { FaHardHat, FaCss3Alt, FaHtml5, FaDatabase } from 'react-icons/fa';
+import { TbHexagon, TbLock, TbWallet, TbServer, TbLayout } from 'react-icons/tb';
 import { VscCode } from 'react-icons/vsc';
 
 export const skillCategories = [
@@ -26,10 +27,12 @@ export const skillCategories = [
     skills: [
       { name: 'Solidity', icon: SiSolidity },
       { name: 'Ethereum', icon: SiEthereum },
+      { name: 'Smart Contracts', icon: TbLock },
       { name: 'Hardhat', icon: FaHardHat },
       { name: 'Ethers.js', icon: TbHexagon },
-      { name: 'Web3.js', icon: TbHexagon },
-      { name: 'Smart Contracts', icon: TbLock },
+      { name: 'Web3.js', icon: SiWeb3Dotjs },
+      { name: 'IPFS', icon: TbServer },
+      { name: 'MetaMask Integration', icon: TbWallet },
     ],
   },
   {
@@ -39,33 +42,47 @@ export const skillCategories = [
     description: 'Crafting responsive, interactive UIs with modern frameworks and CSS tooling.',
     skills: [
       { name: 'React.js', icon: SiReact },
-      { name: 'JavaScript', icon: SiJavascript },
+      { name: 'JavaScript (ES6+)', icon: SiJavascript },
       { name: 'HTML5', icon: FaHtml5 },
       { name: 'CSS3', icon: FaCss3Alt },
       { name: 'Tailwind CSS', icon: SiTailwindcss },
+      { name: 'Responsive Design', icon: TbLayout },
+      { name: 'Vite', icon: SiVite },
     ],
   },
   {
     id: 'databases',
     title: 'Databases',
-    icon: SiPostgresql,
+    icon: FaDatabase,
     description: 'Designing schemas and querying data with SQL and NoSQL database systems.',
     skills: [
-      { name: 'SQL', icon: SiPostgresql },
+      { name: 'SQL', icon: FaDatabase },
       { name: 'MongoDB', icon: SiMongodb },
     ],
   },
   {
     id: 'tools',
-    title: 'Tools & Workflow',
+    title: 'Tools & Platforms',
     icon: SiGithub,
-    description: 'Developer tooling, version control, and design collaboration platforms.',
+    description: 'Developer tooling, version control, and API testing platforms.',
     skills: [
       { name: 'Git', icon: SiGit },
       { name: 'GitHub', icon: SiGithub },
       { name: 'VS Code', icon: VscCode },
       { name: 'Postman', icon: SiPostman },
-      { name: 'Figma', icon: SiFigma },
+      { name: 'Power BI', icon: TbHexagon },
+    ],
+  },
+  {
+    id: 'learning',
+    title: 'Learning',
+    icon: TbHexagon,
+    description: 'Technologies I am currently exploring and building proficiency in.',
+    skills: [
+      { name: 'Go', icon: SiGo },
+      { name: 'Rust', icon: SiRust },
+      { name: 'Hyperledger Fabric', icon: TbServer },
+      { name: 'Corda', icon: TbHexagon },
     ],
   },
 ];

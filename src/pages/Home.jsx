@@ -8,7 +8,6 @@ import Loader from '../components/Loader';
 const About = lazy(() => import('../components/About'));
 const Skills = lazy(() => import('../components/Skills'));
 const Projects = lazy(() => import('../components/Projects'));
-const Services = lazy(() => import('../components/Services'));
 const Experience = lazy(() => import('../components/Experience'));
 const GitHubSection = lazy(() => import('../components/GitHubSection'));
 const CurrentlyLearning = lazy(() => import('../components/CurrentlyLearning'));
@@ -49,10 +48,6 @@ const Home = () => {
 
         <Suspense fallback={<SectionFallback />}>
           <Projects />
-        </Suspense>
-
-        <Suspense fallback={<SectionFallback />}>
-          <Services />
         </Suspense>
 
         <Suspense fallback={<SectionFallback />}>

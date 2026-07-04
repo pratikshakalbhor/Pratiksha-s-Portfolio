@@ -68,8 +68,7 @@ const CurrentlyLearning = () => {
 
                 {/* Text */}
                 <div>
-                  <h3 className="text-base font-bold text-white mb-2">{item.topic}</h3>
-                  <p className="text-gray-400 text-xs leading-relaxed">{item.description}</p>
+                  <h3 className="text-base font-bold text-white">{item.topic}</h3>
                 </div>
               </motion.div>
             );

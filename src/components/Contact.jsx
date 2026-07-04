@@ -6,8 +6,7 @@ import emailjs from '@emailjs/browser';
 import confetti from 'canvas-confetti';
 
 const availableFor = [
-  { icon: FaBriefcase, label: 'Internship', description: 'Open to full-time or part-time internship roles in Web3 and blockchain.' },
-  { icon: FaHandshake, label: 'Freelance', description: 'Available for short-term smart contract or DApp frontend projects.' },
+  { icon: FaBriefcase, label: 'Open to Internship Opportunities', description: 'Seeking full-time or part-time blockchain and Web3 internship roles.' },
   { icon: FaUsers, label: 'Collaboration', description: 'Interested in open-source contributions and hackathon collaborations.' },
 ];
 
@@ -104,7 +103,7 @@ const Contact = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-14"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-14 max-w-4xl mx-auto"
         >
           {availableFor.map((item, idx) => {
             const Icon = item.icon;

@@ -5,6 +5,7 @@ const CustomCursor = () => {
   const [isMobile, setIsMobile] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const [clicked, setClicked] = useState(false);
+  const [hasMoved, setHasMoved] = useState(false);
 
   // Use MotionValues for absolute position tracking
   const cursorX = useMotionValue(-100);
@@ -29,8 +30,9 @@ const CustomCursor = () => {
 
     // Listeners to offset coordinates
     const moveCursor = (e) => {
-      cursorX.set(e.clientX - 6);
-      cursorY.set(e.clientY - 6);
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
+      if (!hasMoved) setHasMoved(true);
     };
 
     // Body custom cursor class flag
@@ -69,7 +71,7 @@ const CustomCursor = () => {
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [isMobile]);
+  }, [isMobile, hasMoved]);
 
   if (isMobile) return null;
 
@@ -80,8 +82,11 @@ const CustomCursor = () => {
         style={{
           x: cursorX,
           y: cursorY,
+          translateX: '-50%',
+          translateY: '-50%',
+          opacity: hasMoved ? 1 : 0,
         }}
-        className="fixed top-0 left-0 w-3 h-3 bg-primary rounded-full z-50 pointer-events-none mix-blend-screen shadow-[0_0_8px_#00F2FE]"
+        className="fixed top-0 left-0 w-3 h-3 bg-primary rounded-full z-50 pointer-events-none mix-blend-screen shadow-[0_0_8px_#00F2FE] transition-opacity duration-300"
         animate={{
           scale: clicked ? 0.8 : isHovered ? 1.5 : 1,
         }}
@@ -91,9 +96,11 @@ const CustomCursor = () => {
         style={{
           x: cursorRingX,
           y: cursorRingY,
-          transformTranslate: '-50%, -50%',
+          translateX: '-50%',
+          translateY: '-50%',
+          opacity: hasMoved ? 1 : 0,
         }}
-        className={`fixed top-0 left-0 w-8 h-8 rounded-full border-2 z-50 pointer-events-none mix-blend-screen -ml-2.5 -mt-2.5 transition-colors duration-300 ${
+        className={`fixed top-0 left-0 w-8 h-8 rounded-full border-2 z-50 pointer-events-none mix-blend-screen transition-all duration-300 ${
           isHovered 
             ? 'border-secondary bg-secondary/10 shadow-[0_0_15px_rgba(121,40,202,0.4)]' 
             : 'border-primary/50'

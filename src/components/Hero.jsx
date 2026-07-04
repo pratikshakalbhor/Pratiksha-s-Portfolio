@@ -4,10 +4,9 @@ import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload } from 'react-icons/fa
 import { SiSolidity, SiEthereum } from 'react-icons/si';
 
 const roleStrings = [
-  'Blockchain Developer',
-  'Web3 Enthusiast',
-  'Smart Contract Architect',
-  'Dapp UI Engineer'
+  'Blockchain Student',
+  'Solidity Developer',
+  'Frontend Developer'
 ];
 
 const Hero = () => {
@@ -126,7 +125,7 @@ const Hero = () => {
             variants={itemVariants}
             className="text-gray-400 max-w-xl text-base md:text-lg leading-relaxed mb-8"
           >
-            I am a blockchain student at Savitribai Phule Pune University, constructing secure, gas-optimized Solidity smart contracts, decentralized infrastructures, and interactive Web3 frontend experiences.
+            I am a blockchain student at Savitribai Phule Pune University. I build Solidity smart contracts and connect them with clean, interactive React applications.
           </motion.p>
           
           {/* Action CTAs */}
