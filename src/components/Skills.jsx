@@ -1,107 +1,366 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { skillCategories } from '../data/skills';
+import {
+  SiSolidity, SiEthereum, SiJavascript, SiReact,
+  SiMongodb, SiGit, SiGithub, SiWeb3Dotjs, SiHtml5,
+} from 'react-icons/si';
+import {
+  FaHardHat, FaDatabase, FaCss3Alt,
+} from 'react-icons/fa';
+import {
+  TbHexagon, TbLock, TbWallet, TbServer, TbChartBar,
+} from 'react-icons/tb';
+import { VscCode } from 'react-icons/vsc';
+import { AnimatedTitle } from '../pages/Home';
 
-const Skills = () => {
+/* ─── Data ─────────────────────────────────────────────────────────────────── */
+const CATEGORIES = [
+  {
+    id: 'blockchain',
+    title: 'Blockchain & Web3',
+    accent: '#00F2FE',
+    accentSoft: 'rgba(0,242,254,0.12)',
+    borderGlow: 'rgba(0,242,254,0.5)',
+    skills: [
+      { name: 'Solidity',          icon: SiSolidity   },
+      { name: 'Ethereum',          icon: SiEthereum   },
+      { name: 'Smart Contracts',   icon: TbLock       },
+      { name: 'Hardhat',           icon: FaHardHat    },
+      { name: 'Ethers.js',         icon: TbHexagon    },
+      { name: 'Web3.js',           icon: SiWeb3Dotjs  },
+      { name: 'IPFS',              icon: TbServer     },
+      { name: 'MetaMask',          icon: TbWallet     },
+    ],
+  },
+  {
+    id: 'frontend',
+    title: 'Frontend Development',
+    accent: '#a855f7',
+    accentSoft: 'rgba(168,85,247,0.12)',
+    borderGlow: 'rgba(168,85,247,0.5)',
+    skills: [
+      { name: 'React.js',    icon: SiReact      },
+      { name: 'JavaScript',  icon: SiJavascript },
+      { name: 'HTML5',       icon: SiHtml5      },
+      { name: 'CSS3',        icon: FaCss3Alt    },
+    ],
+  },
+  {
+    id: 'databases',
+    title: 'Databases',
+    accent: '#4FACFE',
+    accentSoft: 'rgba(79,172,254,0.12)',
+    borderGlow: 'rgba(79,172,254,0.5)',
+    skills: [
+      { name: 'SQL',     icon: FaDatabase  },
+      { name: 'MongoDB', icon: SiMongodb   },
+    ],
+  },
+  {
+    id: 'tools',
+    title: 'Tools & Platforms',
+    accent: '#c084fc',
+    accentSoft: 'rgba(192,132,252,0.12)',
+    borderGlow: 'rgba(192,132,252,0.5)',
+    skills: [
+      { name: 'Git',     icon: SiGit                  },
+      { name: 'GitHub',  icon: SiGithub               },
+      { name: 'VS Code', icon: VscCode                 },
+      { name: 'Power BI', icon: TbChartBar },
+    ],
+  },
+];
+
+/* ─── Framer Motion variants ────────────────────────────────────────────────── */
+const sectionVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
+const cardVariants = {
+  hidden:  { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 120, damping: 18 } },
+};
+
+const categoryVariants = {
+  hidden:  { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+};
+
+/* ─── Floating particle ─────────────────────────────────────────────────────── */
+const Particle = ({ style, duration, delay }) => (
+  <motion.div
+    className="absolute rounded-full pointer-events-none"
+    style={style}
+    animate={{ y: [0, -20, 0], opacity: [0.3, 0.7, 0.3] }}
+    transition={{ duration, delay, repeat: Infinity, ease: 'easeInOut' }}
+    aria-hidden="true"
+  />
+);
+
+/* ─── Individual Skill Card ─────────────────────────────────────────────────── */
+const SkillCard = ({ skill, accent, accentSoft, borderGlow }) => {
+  const Icon = skill.icon;
   return (
-    <section
-      id="skills"
-      aria-labelledby="skills-heading"
-      className="py-24 relative overflow-hidden bg-dark-lighter/50"
+    <motion.div
+      variants={cardVariants}
+      whileHover={{
+        y: -8,
+        scale: 1.05,
+        transition: { type: 'spring', stiffness: 300, damping: 18 },
+      }}
+      className="skill-glass-card"
+      style={{ '--accent': accent, '--accent-soft': accentSoft, '--border-glow': borderGlow }}
     >
-      {/* Visual glowing meshes */}
-      <div className="absolute top-[30%] right-[5%] w-[300px] h-[300px] bg-primary/5 rounded-full blur-[80px] pointer-events-none" aria-hidden="true" />
-      <div className="absolute bottom-[20%] left-[5%] w-[350px] h-[350px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none" aria-hidden="true" />
+      {/* Icon */}
+      <motion.span
+        className="skill-icon"
+        whileHover={{ rotate: 10, scale: 1.2 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 14 }}
+        aria-hidden="true"
+      >
+        <Icon />
+      </motion.span>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      {/* Name */}
+      <span className="skill-name">{skill.name}</span>
 
-        {/* Title */}
-        <div className="text-center mb-16">
-          <motion.h2
-            id="skills-heading"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-extrabold text-white uppercase tracking-wider relative inline-block"
-          >
-            My <span className="text-primary text-glow-cyan">Skills</span>
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-20 h-[3px] bg-primary rounded-full shadow-[0_0_8px_#00F2FE]" aria-hidden="true" />
-          </motion.h2>
-          <p className="text-gray-400 text-sm mt-6 tracking-widest font-mono">TECHNOLOGIES I WORK WITH</p>
-        </div>
-
-        {/* Categories */}
-        <div className="space-y-12">
-          {skillCategories.map((category, catIdx) => {
-            const CategoryIcon = category.icon;
-            return (
-              <motion.div
-                key={category.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: catIdx * 0.1 }}
-              >
-                {/* Category Header */}
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20 text-primary text-lg" aria-hidden="true">
-                    <CategoryIcon />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white tracking-wide">{category.title}</h3>
-                    <p className="text-gray-500 text-xs font-mono mt-0.5">{category.description}</p>
-                  </div>
-                </div>
-
-                {/* Skill Badge Grid — glowing chips */}
-                <div className="flex flex-wrap gap-3" role="list" aria-label={`${category.title} skills`}>
-                  {category.skills.map((skill, skillIdx) => {
-                    const SkillIcon = skill.icon;
-                    return (
-                      <motion.div
-                        key={skill.name}
-                        role="listitem"
-                        initial={{ opacity: 0, scale: 0.85 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: catIdx * 0.05 + skillIdx * 0.05, type: 'spring', stiffness: 200, damping: 20 }}
-                        whileHover={{
-                          y: -5,
-                          scale: 1.08,
-                          boxShadow: '0 0 18px rgba(0, 242, 254, 0.45)',
-                          borderColor: 'rgba(0, 242, 254, 0.6)',
-                          transition: { duration: 0.15 }
-                        }}
-                        className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl glassmorphism border border-white/8 transition-all duration-300 cursor-default group"
-                        style={{ willChange: 'transform, box-shadow' }}
-                      >
-                        <motion.span
-                          className="text-base text-primary/70 group-hover:text-primary transition-colors duration-300"
-                          whileHover={{ scale: 1.3, rotate: 5 }}
-                          aria-hidden="true"
-                        >
-                          <SkillIcon />
-                        </motion.span>
-                        <span className="text-sm font-medium text-gray-200 group-hover:text-white transition-colors duration-300">
-                          {skill.name}
-                        </span>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-
-                {/* Divider between categories except last */}
-                {catIdx < skillCategories.length - 1 && (
-                  <div className="mt-10 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" aria-hidden="true" />
-                )}
-              </motion.div>
-            );
-          })}
-        </div>
-
-      </div>
-    </section>
+      {/* Bottom glow line */}
+      <div className="skill-glow-line" aria-hidden="true" />
+    </motion.div>
   );
 };
+
+/* ─── Category Block ────────────────────────────────────────────────────────── */
+const CategoryBlock = ({ category, catIdx }) => (
+  <motion.div
+    variants={categoryVariants}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, margin: '-60px' }}
+  >
+    {/* Category Label */}
+    <div className="cat-header">
+      <div className="cat-dot" style={{ background: category.accent }} />
+      <h3 className="cat-title" style={{ color: category.accent }}>
+        {category.title}
+      </h3>
+      <div className="cat-line" style={{ background: `linear-gradient(to right, ${category.accent}40, transparent)` }} />
+    </div>
+
+    {/* Cards Grid */}
+    <motion.div
+      className="skills-grid"
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-40px' }}
+    >
+      {category.skills.map((skill) => (
+        <SkillCard
+          key={skill.name}
+          skill={skill}
+          accent={category.accent}
+          accentSoft={category.accentSoft}
+          borderGlow={category.borderGlow}
+        />
+      ))}
+    </motion.div>
+  </motion.div>
+);
+
+/* ─── Main Section ──────────────────────────────────────────────────────────── */
+const Skills = () => (
+  <section
+    id="skills"
+    aria-labelledby="skills-heading"
+    className="skills-section"
+  >
+    {/* ── Ambient background blobs ── */}
+    <div className="blob blob-1" aria-hidden="true" />
+    <div className="blob blob-2" aria-hidden="true" />
+    <div className="blob blob-3" aria-hidden="true" />
+
+    {/* ── Floating particles ── */}
+    <Particle style={{ left:  '6%',  top: '18%', width: 5, height: 5, background: 'rgba(0,242,254,0.55)'   }} duration={5}  delay={0}   />
+    <Particle style={{ left: '90%',  top: '12%', width: 4, height: 4, background: 'rgba(121,40,202,0.55)'  }} duration={7}  delay={1.2} />
+    <Particle style={{ left: '22%',  top: '78%', width: 6, height: 6, background: 'rgba(0,242,254,0.40)'   }} duration={6}  delay={0.6} />
+    <Particle style={{ left: '78%',  top: '62%', width: 5, height: 5, background: 'rgba(79,172,254,0.50)'  }} duration={8}  delay={2}   />
+    <Particle style={{ left: '50%',  top: '88%', width: 4, height: 4, background: 'rgba(168,85,247,0.45)'  }} duration={5}  delay={1.8} />
+    <Particle style={{ left: '38%',  top: '25%', width: 3, height: 3, background: 'rgba(0,242,254,0.35)'   }} duration={9}  delay={0.9} />
+    <Particle style={{ left: '85%',  top: '82%', width: 7, height: 7, background: 'rgba(192,132,252,0.35)' }} duration={6}  delay={2.5} />
+    <Particle style={{ left: '65%',  top: '5%',  width: 4, height: 4, background: 'rgba(0,242,254,0.45)'   }} duration={7}  delay={3}   />
+
+    <div className="skills-inner">
+
+      {/* ── Title ── */}
+      <AnimatedTitle
+        text="My Skills"
+        subtext="Technologies I build with — from smart contracts to full-stack dapps."
+      />
+
+      {/* ── Categories ── */}
+      <div className="categories-stack">
+        {CATEGORIES.map((cat, i) => (
+          <CategoryBlock key={cat.id} category={cat} catIdx={i} />
+        ))}
+      </div>
+
+    </div>
+
+    {/* ── Styles ── */}
+    <style>{`
+      /* ── section shell ── */
+      .skills-section {
+        position: relative;
+        padding: 96px 0;
+        background: #07090F;
+        overflow: hidden;
+      }
+
+      .skills-inner {
+        max-width: 1152px;
+        margin: 0 auto;
+        padding: 0 24px;
+        position: relative;
+        z-index: 10;
+      }
+
+      /* ── ambient blobs ── */
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        filter: blur(110px);
+      }
+      .blob-1 { width: 420px; height: 420px; top: -80px;  right: 0;    background: rgba(0,242,254,0.055); }
+      .blob-2 { width: 480px; height: 480px; bottom: -100px; left: -60px; background: rgba(121,40,202,0.06); }
+      .blob-3 { width: 360px; height: 280px; top: 40%;   left: 35%;   background: rgba(79,172,254,0.04); }
+
+      /* ── category layout ── */
+      .categories-stack { display: flex; flex-direction: column; gap: 52px; }
+
+      /* ── category header ── */
+      .cat-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 22px;
+      }
+      .cat-dot {
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        box-shadow: 0 0 8px currentColor;
+      }
+      .cat-title {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-family: 'Fira Code', monospace;
+        white-space: nowrap;
+      }
+      .cat-line {
+        flex: 1;
+        height: 1px;
+        border-radius: 2px;
+      }
+
+      /* ── cards grid ── */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 14px;
+      }
+
+      /* ── individual glass card ── */
+      .skill-glass-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 22px 12px 18px;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.07);
+        background: rgba(13, 20, 35, 0.55);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        cursor: default;
+        transition:
+          border-color 0.3s ease,
+          background   0.3s ease,
+          box-shadow   0.3s ease;
+        overflow: hidden;
+      }
+      .skill-glass-card:hover {
+        border-color: var(--border-glow);
+        background: rgba(13, 20, 45, 0.72);
+        box-shadow:
+          0 0 20px var(--accent-soft),
+          0 8px 32px rgba(0,0,0,0.35),
+          inset 0 1px 0 rgba(255,255,255,0.06);
+      }
+
+      /* ── icon ── */
+      .skill-icon {
+        font-size: 26px;
+        color: var(--accent);
+        filter: drop-shadow(0 0 6px var(--accent));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: filter 0.3s ease, color 0.3s ease;
+      }
+      .skill-glass-card:hover .skill-icon {
+        filter: drop-shadow(0 0 12px var(--accent));
+      }
+
+      /* ── label ── */
+      .skill-name {
+        font-size: 11.5px;
+        font-weight: 600;
+        color: #cbd5e1;
+        text-align: center;
+        letter-spacing: 0.02em;
+        line-height: 1.3;
+        transition: color 0.3s ease;
+      }
+      .skill-glass-card:hover .skill-name { color: #ffffff; }
+
+      /* ── bottom glow accent line ── */
+      .skill-glow-line {
+        position: absolute;
+        bottom: 0; left: 20%; right: 20%;
+        height: 2px;
+        border-radius: 2px;
+        background: var(--accent);
+        opacity: 0;
+        transition: opacity 0.3s ease, left 0.3s ease, right 0.3s ease;
+        box-shadow: 0 0 8px var(--accent);
+      }
+      .skill-glass-card:hover .skill-glow-line {
+        opacity: 0.7;
+        left: 10%; right: 10%;
+      }
+
+      /* ── responsive ── */
+      @media (max-width: 768px) {
+        .skills-section { padding: 72px 0; }
+        .skills-grid    { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
+        .skill-glass-card { padding: 18px 10px 14px; }
+        .skill-icon     { font-size: 22px; }
+        .skill-name     { font-size: 10.5px; }
+      }
+
+      @media (max-width: 480px) {
+        .skills-grid { grid-template-columns: repeat(3, 1fr); gap: 9px; }
+        .skill-glass-card { padding: 16px 8px 12px; }
+      }
+    `}</style>
+  </section>
+);
 
 export default Skills;
