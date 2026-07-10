@@ -135,21 +135,22 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-dark overflow-x-hidden">
-      {/* 1. Subtle, slow floating neon gradient blobs for visual depth */}
-      <div className="absolute top-[10%] left-[-10%] w-[55vw] h-[55vw] rounded-full bg-primary/4 blur-[180px] animate-pulse pointer-events-none mix-blend-screen" aria-hidden="true" />
-      <div className="absolute top-[40%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-secondary/4 blur-[220px] animate-pulse-slow pointer-events-none mix-blend-screen" aria-hidden="true" />
-      <div className="absolute bottom-[10%] left-[5%] w-[50vw] h-[50vw] rounded-full bg-primary/4 blur-[190px] animate-pulse pointer-events-none mix-blend-screen" aria-hidden="true" />
-
-      {/* 2. Interactive tsParticles Backdrop */}
-      <ParticleBackground />
-      <div className="gradient-bg" aria-hidden="true" />
-
-      {/* 3. Global Navigation Menu */}
+    <>
+      {/* ── Navbar lives OUTSIDE the overflow wrapper so position:fixed works correctly ── */}
       <Navbar />
 
-      {/* 4. Single-Page Main Scroller */}
-      <main id="main-content" className="relative z-10 w-full flex flex-col gap-10">
+      <div className="relative min-h-screen bg-dark">
+        {/* 1. Subtle, slow floating neon gradient blobs for visual depth */}
+        <div className="absolute top-[10%] left-[-10%] w-[55vw] h-[55vw] rounded-full bg-primary/4 blur-[180px] animate-pulse pointer-events-none mix-blend-screen" aria-hidden="true" />
+        <div className="absolute top-[40%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-secondary/4 blur-[220px] animate-pulse-slow pointer-events-none mix-blend-screen" aria-hidden="true" />
+        <div className="absolute bottom-[10%] left-[5%] w-[50vw] h-[50vw] rounded-full bg-primary/4 blur-[190px] animate-pulse pointer-events-none mix-blend-screen" aria-hidden="true" />
+
+        {/* 2. Interactive tsParticles Backdrop */}
+        <ParticleBackground />
+        <div className="gradient-bg" aria-hidden="true" />
+
+        {/* 3. Single-Page Main Scroller */}
+        <main id="main-content" className="relative w-full flex flex-col gap-10">
         {/* Render immediately for rapid initial page speed (LCP Optimization) */}
         <Hero />
 
@@ -206,12 +207,13 @@ const Home = () => {
             <Contact />
           </ScrollReveal>
         </Suspense>
-      </main>
+        </main>
 
-      <Suspense fallback={null}>
-        <Footer />
-      </Suspense>
-    </div>
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
+      </div>
+    </>
   );
 };
 
