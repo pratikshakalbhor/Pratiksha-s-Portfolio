@@ -1,71 +1,43 @@
-# Premium Web3 & Blockchain Developer Portfolio
+# 🚀 Premium Web3 & Blockchain Developer Portfolio
 
-A modern, premium, and fully responsive personal portfolio designed for **Pratiksha Kalbhor**, Blockchain Developer and Web3 Enthusiast. 
+A modern, high-performance, and immersive personal portfolio designed for **Pratiksha Kalbhor**, Blockchain Developer and Web3 Enthusiast. 
 
-Built using **React.js**, **Tailwind CSS**, and **Framer Motion**, this portfolio mimics award-winning Web3/DeFi websites with interactive canvas particle backdrops, custom pointer springs, scrolling progress overlays, and a simulated smart-contract mining sequence loader.
+Built using **React.js**, **Tailwind CSS**, and **Framer Motion**, this portfolio mimics award-winning Web3/DeFi websites with interactive canvas particle backdrops, premium glassmorphism layouts, custom interactive 3D elements, and clean animations.
 
-## 🚀 Tech Stack
+---
 
-- **Framework:** React.js (via Vite)
-- **Styling:** Tailwind CSS & Glassmorphism design tokens
-- **Animations:** Framer Motion (slide panels, springs, staggering enters)
-- **Icons:** React Icons (`react-icons` for Solidity, Ethereum, React, etc.)
-- **Contact Protocol:** EmailJS integration equipped with client-side forms validation & success animation bursts
+## ✨ Core Interactive Features
 
-## 📂 Project Architecture
+*   **⚡ Web3 Consensus Loader:** A custom smart-contract mining sequence preloader that simulates transaction consensus verification before mounting the main app.
+*   **🌌 Dynamic Particle Backdrop & Glow:** An interactive canvas particle network combined with soft neon gradient meshes (cyan, purple, blue) for deep visual atmosphere.
+*   **🎯 Fixed Glassmorphism Navbar:** A custom scroll-aware navigation bar equipped with a glowing gradients scroll progress indicator. It uses React Portal (`createPortal`) to guarantee correct absolute fixed positioning relative to the viewport.
+*   **🎡 3D Circular Projects Gallery:** A custom Apple Vision Pro-style 3D carousel rotating clockwise on 3D CSS `rotateY` cylinder axes. 
+    *   *Hover:* Pauses carousel and snaps cards to center stage.
+    *   *Mouse Drag & Swipe:* Supports fluid manual rotation with velocity centering.
+    *   *Double-Click Lock (🔒):* Double-clicking locking freezes rotation completely, showing a status indicator. This allows recruiters to read info panels cleanly. Keyboard `Esc` or clicking outside unlocks.
+*   **📊 Featured Project Details Panel:** Slide-and-fade details drawer summarizing tech stack flags, key features, Github repositories, and live project deployments.
+*   **🔮 Premium Skills Panel:** Recruiter-friendly categories (Blockchain, Frontend, Databases, Tools) showing individual glass cards with hover lift, rotating icons, and glowing bottom accent triggers.
+*   **⏳ Glowing Experience Timeline:** A linear step-timeline tracking education milestones, development career journeys, and hackathon milestones.
+*   **✉️ Seamless Contact Panel:** A contact form with field validation integrated with EmailJS, featuring instant feedback animations on successful message deployment.
+*   **🖱️ Custom Spring Cursor:** Responsive mouse tracker helper with trailing momentum tracking rings (auto-hidable on touchscreens).
 
-```text
-portfolio/
-├── public/
-│   ├── favicon.ico
-│   ├── resume.pdf
-│   └── images/
-│
-├── src/
-│   ├── assets/
-│   │   ├── images/
-│   │   ├── icons/
-│   │   └── animations/
-│   │
-│   ├── components/
-│   │   ├── Navbar.jsx          # Header with scroll indicator
-│   │   ├── Hero.jsx            # Welcomer with floating contract code visualizer
-│   │   ├── About.jsx           # Biography tabs (Objective & Education details)
-│   │   ├── Skills.jsx          # Category cards with progress bars
-│   │   ├── Projects.jsx        # Expanded list (FreelanceChain, NFT Marketplace, etc.)
-│   │   ├── Experience.jsx      # Vertical glowing event timeline
-│   │   ├── Certifications.jsx  # Qualifications credential cards
-│   │   ├── Achievements.jsx    # Bootcamps, Hackathons, and Deploys details
-│   │   ├── Contact.jsx         # Validation form + EmailJS integrations
-│   │   ├── Footer.jsx          # Copyright + social connects
-│   │   ├── CustomCursor.jsx    # Custom pointer springs
-│   │   ├── ParticleBackground.jsx # Light HTML5 Canvas particle backdrop
-│   │   └── Loader.jsx          # Sync consensus loading animation
-│   │
-│   ├── pages/
-│   │   └── Home.jsx            # Master layout page
-│   │
-│   ├── data/
-│   │   ├── projects.js         # Local database of projects
-│   │   ├── skills.js           # Local database of skills & proficiencies
-│   │   ├── experience.js       # Timeline history
-│   │   └── certificates.js     # Qualifications data
-│   │
-│   ├── App.jsx                 # Animation state loader and custom layout router
-│   ├── main.jsx                # DOM landing page root mounting
-│   └── index.css               # Scrollbars, body modifiers, custom animations
-│
-├── .env                        # Port key definitions template
-├── package.json                # Project configurations & dependency declarations
-├── vite.config.js              # Vite server custom parameters
-└── README.md                   # Setup documentation
-```
+---
 
-## 🛠️ Getting Started
+## 🛠️ Tech Stack
+
+*   **Frontend Library:** React.js (via Vite)
+*   **Styling Engine:** Tailwind CSS & Custom CSS variables
+*   **Animation System:** Framer Motion (staggered entries, spring transitions, sliding overlays)
+*   **Icons Library:** React Icons (`react-icons` for Solidity, Ethereum, React, database engines)
+*   **E-Mail Protocols:** EmailJS integration with client-side form validation
+
+---
+
+## 🚀 Getting Started
 
 ### 1. Installation
 
-Install all required modules and assets:
+Clone the repository and install all required modules:
 
 ```bash
 npm install
@@ -73,7 +45,7 @@ npm install
 
 ### 2. Configure EmailJS Credentials
 
-Open the `.env` file in the root directory and input your EmailJS service key identifiers:
+Add your EmailJS credentials by updating or creating a `.env` file in the root directory:
 
 ```env
 VITE_EMAILJS_SERVICE_ID="your_service_id"
@@ -91,11 +63,11 @@ Run the portfolio locally:
 npm run dev
 ```
 
-The application will launch on `http://localhost:3000` with hot-module reloading active.
+The application will launch on `http://localhost:5173` with hot-module reloading active.
 
 ### 4. Build for Production
 
-Compile code bundles optimized for server hosting:
+Compile optimized production-ready asset bundles:
 
 ```bash
 npm run build
