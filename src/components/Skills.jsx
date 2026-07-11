@@ -2,13 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import {
   SiSolidity, SiEthereum, SiJavascript, SiReact,
-  SiMongodb, SiGit, SiGithub, SiWeb3Dotjs, SiHtml5,
+  SiMongodb, SiGit, SiGithub, SiHtml5, SiGo, SiRust,
+  SiDocker, SiVercel
 } from 'react-icons/si';
 import {
   FaHardHat, FaDatabase, FaCss3Alt,
 } from 'react-icons/fa';
 import {
-  TbHexagon, TbLock, TbWallet, TbServer, TbChartBar,
+  TbLock, TbWallet, TbChartBar
 } from 'react-icons/tb';
 import { VscCode } from 'react-icons/vsc';
 import { AnimatedTitle } from '../pages/Home';
@@ -16,33 +17,41 @@ import { AnimatedTitle } from '../pages/Home';
 /* ─── Data ─────────────────────────────────────────────────────────────────── */
 const CATEGORIES = [
   {
-    id: 'blockchain',
-    title: 'Blockchain & Web3',
+    id: 'languages',
+    title: 'Programming Languages',
     accent: '#00F2FE',
     accentSoft: 'rgba(0,242,254,0.12)',
     borderGlow: 'rgba(0,242,254,0.5)',
     skills: [
       { name: 'Solidity',          icon: SiSolidity   },
-      { name: 'Ethereum',          icon: SiEthereum   },
+      { name: 'JavaScript',        icon: SiJavascript },
+      { name: 'Go',                icon: SiGo         },
+      { name: 'Rust (Basic)',      icon: SiRust       },
+    ],
+  },
+  {
+    id: 'blockchain',
+    title: 'Blockchain',
+    accent: '#a855f7',
+    accentSoft: 'rgba(168,85,247,0.12)',
+    borderGlow: 'rgba(168,85,247,0.5)',
+    skills: [
       { name: 'Smart Contracts',   icon: TbLock       },
-      { name: 'Hardhat',           icon: FaHardHat    },
-      { name: 'Ethers.js',         icon: TbHexagon    },
-      { name: 'Web3.js',           icon: SiWeb3Dotjs  },
-      { name: 'IPFS',              icon: TbServer     },
+      { name: 'Ethereum (Basic)',  icon: SiEthereum   },
+      { name: 'Hardhat (Basic)',   icon: FaHardHat    },
       { name: 'MetaMask',          icon: TbWallet     },
     ],
   },
   {
     id: 'frontend',
-    title: 'Frontend Development',
-    accent: '#a855f7',
-    accentSoft: 'rgba(168,85,247,0.12)',
-    borderGlow: 'rgba(168,85,247,0.5)',
+    title: 'Frontend',
+    accent: '#05FFCC',
+    accentSoft: 'rgba(5,255,204,0.12)',
+    borderGlow: 'rgba(5,255,204,0.5)',
     skills: [
-      { name: 'React.js',    icon: SiReact      },
-      { name: 'JavaScript',  icon: SiJavascript },
-      { name: 'HTML5',       icon: SiHtml5      },
-      { name: 'CSS3',        icon: FaCss3Alt    },
+      { name: 'React.js',          icon: SiReact      },
+      { name: 'HTML5',             icon: SiHtml5      },
+      { name: 'CSS3',              icon: FaCss3Alt    },
     ],
   },
   {
@@ -52,8 +61,8 @@ const CATEGORIES = [
     accentSoft: 'rgba(79,172,254,0.12)',
     borderGlow: 'rgba(79,172,254,0.5)',
     skills: [
-      { name: 'SQL',     icon: FaDatabase  },
-      { name: 'MongoDB', icon: SiMongodb   },
+      { name: 'MongoDB',           icon: SiMongodb    },
+      { name: 'SQL',               icon: FaDatabase   },
     ],
   },
   {
@@ -63,10 +72,13 @@ const CATEGORIES = [
     accentSoft: 'rgba(192,132,252,0.12)',
     borderGlow: 'rgba(192,132,252,0.5)',
     skills: [
-      { name: 'Git',     icon: SiGit                  },
-      { name: 'GitHub',  icon: SiGithub               },
-      { name: 'VS Code', icon: VscCode                 },
-      { name: 'Power BI', icon: TbChartBar },
+      { name: 'Git',               icon: SiGit        },
+      { name: 'GitHub',            icon: SiGithub     },
+      { name: 'VS Code',           icon: VscCode      },
+      { name: 'Remix IDE',         icon: SiSolidity   },
+      { name: 'Docker (Basic)',    icon: SiDocker     },
+      { name: 'Vercel',            icon: SiVercel     },
+      { name: 'Power BI',          icon: TbChartBar   },
     ],
   },
 ];
