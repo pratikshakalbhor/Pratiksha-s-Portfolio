@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaGraduationCap, FaBullseye, FaCircleUser } from 'react-icons/fa6';
+import { FaFileDownload } from 'react-icons/fa';
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('bio');
@@ -21,6 +22,15 @@ const About = () => {
             <p className="text-gray-400 leading-relaxed text-sm md:text-base">
               I am a <strong>B.Sc Blockchain Technology</strong> student at Savitribai Phule Pune University with a strong passion for blockchain and Web3. I build decentralized projects using <strong>Solidity, React, and JavaScript</strong>, and I am currently focusing on learning full-stack blockchain development.
             </p>
+            <div className="pt-4">
+              <a
+                href="/Pratiksha_Kalbhor_Resume.pdf"
+                download
+                className="px-6 py-2.5 rounded-full font-mono text-xs font-semibold text-white bg-primary/10 border border-primary/30 hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 flex items-center gap-2 w-fit active:scale-95 cursor-pointer"
+              >
+                Download Resume <FaFileDownload size={13} />
+              </a>
+            </div>
           </motion.div>
         );
       case 'education':

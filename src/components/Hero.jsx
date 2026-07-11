@@ -282,6 +282,14 @@ const Hero = () => {
             </a>
             
             <a
+              href="/Pratiksha_Kalbhor_Resume.pdf"
+              download
+              className="px-6 py-3 rounded-full font-semibold text-white bg-dark-lighter border border-dark-border hover:bg-dark-card hover:border-primary/50 transition-all duration-300 flex items-center gap-2 transform hover:-translate-y-0.5"
+            >
+              Download Resume <FaFileDownload size={14} />
+            </a>
+
+            <a
               href="#contact"
               onClick={scrollToContact}
               className="px-6 py-3 rounded-full font-semibold text-white bg-dark-lighter border border-dark-border hover:bg-dark-card hover:border-primary/50 transition-all duration-300 flex items-center gap-2 transform hover:-translate-y-0.5"
@@ -323,7 +331,7 @@ const Hero = () => {
                 <FaEnvelope />
               </a>
               <a
-                href="/resume.pdf"
+                href="/Pratiksha_Kalbhor_Resume.pdf"
                 download
                 className="text-gray-400 hover:text-primary hover:scale-110 transition-all duration-300 text-2xl"
                 aria-label="Download Resume"
