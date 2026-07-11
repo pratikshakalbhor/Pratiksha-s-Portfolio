@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaAward, FaLaptopCode, FaDatabase } from 'react-icons/fa';
+import { FaDatabase } from 'react-icons/fa';
 import { SiSolidity } from 'react-icons/si';
 
 const achievementsList = [
@@ -9,44 +9,16 @@ const achievementsList = [
     title: 'Samsung Innovation Campus Graduate',
     icon: FaDatabase,
     date: '2025',
-    bullets: [
-      'Completed certified bootcamp training covering Data Analytics, Algorithms, and C/C++ programming.',
-      'Designed relational database tables and wrote analytical queries in SQL.',
-    ],
+    description: 'Successfully completed the Samsung Innovation Campus program focused on programming, SQL, and data analytics.',
     color: '#00F2FE',
   },
   {
     id: 2,
-    title: 'Open Source Contributor',
-    icon: FaAward,
-    date: '2024',
-    bullets: [
-      'Contributed minor documentation updates and library fixes for public Web3/React tooling.',
-      'Participated in code reviews and discussions in community developer forums.',
-    ],
-    color: '#7928CA',
-  },
-  {
-    id: 3,
     title: 'Blockchain Projects',
     icon: SiSolidity,
     date: '2024 – Present',
-    bullets: [
-      'Created Solidity smart contract implementations for token tracking and carbon credit registry.',
-      'Designed responsive UI control dashboards integrated with wallet provider interfaces.',
-    ],
+    description: 'Built multiple blockchain projects using Solidity, React, Hardhat, and Web3 technologies.',
     color: '#00F2FE',
-  },
-  {
-    id: 4,
-    title: 'Hackathon Participant',
-    icon: FaLaptopCode,
-    date: '2025',
-    bullets: [
-      'Developed a prototype decentralized application MVP during a campus blockchain development event.',
-      'Connected MetaMask provider APIs to supply live blockchain state fields to frontend components.',
-    ],
-    color: '#7928CA',
   },
 ];
 
@@ -75,7 +47,7 @@ const Achievements = () => {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {achievementsList.map((ach, idx) => {
             const Icon = ach.icon;
             return (
@@ -89,7 +61,7 @@ const Achievements = () => {
               >
                 {/* Icon */}
                 <div
-                  className="p-4 rounded-2xl flex-shrink-0 text-2xl"
+                  className="p-4 rounded-xl flex-shrink-0 text-2xl"
                   style={{
                     backgroundColor: `${ach.color}15`,
                     color: ach.color,
@@ -102,19 +74,14 @@ const Achievements = () => {
                 </div>
 
                 {/* Content */}
-                <div className="space-y-3">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <div className="space-y-3 flex-grow">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 pb-2 border-b border-white/5">
                     <h3 className="text-lg font-bold text-white tracking-wide">{ach.title}</h3>
                     <span className="text-[10px] font-mono font-bold text-gray-500 uppercase flex-shrink-0">{ach.date}</span>
                   </div>
-                  <ul className="space-y-2">
-                    {ach.bullets.map((bullet, bIdx) => (
-                      <li key={bIdx} className="text-gray-400 text-xs md:text-sm leading-relaxed flex items-start gap-2.5">
-                        <span className="mt-1 text-[10px] flex-shrink-0" style={{ color: ach.color }} aria-hidden="true">▶</span>
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
+                  <p className="text-gray-400 text-xs md:text-sm leading-relaxed">
+                    {ach.description}
+                  </p>
                 </div>
               </motion.div>
             );
