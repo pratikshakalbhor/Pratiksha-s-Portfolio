@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaGraduationCap, FaBullseye, FaCircleUser } from 'react-icons/fa6';
-import { FaFileDownload } from 'react-icons/fa';
+import { FaFilePdf } from 'react-icons/fa';
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('bio');
@@ -25,10 +25,11 @@ const About = () => {
             <div className="pt-4">
               <a
                 href="/Pratiksha_Kalbhor_Resume.pdf"
-                download
-                className="px-6 py-2.5 rounded-full font-mono text-xs font-semibold text-white bg-primary/10 border border-primary/30 hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 flex items-center gap-2 w-fit active:scale-95 cursor-pointer"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-2.5 rounded-full font-mono text-xs font-semibold text-white bg-primary/10 border border-primary/30 hover:bg-primary/20 hover:border-primary/50 transition-all duration-300 flex items-center gap-2 w-fit active:scale-95 cursor-pointer shadow-[0_0_10px_rgba(0,242,254,0.05)] hover:shadow-[0_0_20px_rgba(0,242,254,0.18)]"
               >
-                Download Resume <FaFileDownload size={13} />
+                View Resume <FaFilePdf size={13} className="text-primary" />
               </a>
             </div>
           </motion.div>

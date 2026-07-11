@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaFileDownload } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaGithub, FaLinkedin, FaEnvelope, FaFilePdf } from 'react-icons/fa';
 import { SiSolidity, SiEthereum } from 'react-icons/si';
 
 const roleStrings = [
@@ -147,6 +147,67 @@ const BlockchainOrb = () => {
   );
 };
 
+// Interactive Magnetic button with animated hover glow & sweep
+const MagneticButton = ({ children, className, href, onClick, target, rel, style = {} }) => {
+  const buttonRef = useRef(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [hovered, setHovered] = useState(false);
+
+  const handleMouseMove = (e) => {
+    if (!buttonRef.current) return;
+    const { clientX, clientY } = e;
+    const { left, top, width, height } = buttonRef.current.getBoundingClientRect();
+    const cx = left + width / 2;
+    const cy = top + height / 2;
+    const dx = (clientX - cx) * 0.12;
+    const dy = (clientY - cy) * 0.12;
+    setPosition({ x: dx, y: dy });
+  };
+
+  const handleMouseLeave = () => {
+    setPosition({ x: 0, y: 0 });
+    setHovered(false);
+  };
+
+  return (
+    <motion.a
+      ref={buttonRef}
+      href={href}
+      onClick={onClick}
+      target={target}
+      rel={rel}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => setHovered(true)}
+      animate={{ x: position.x, y: position.y }}
+      transition={{ type: 'spring', stiffness: 350, damping: 25, mass: 0.5 }}
+      whileTap={{ scale: 0.97 }}
+      className={`group relative rounded-full font-semibold px-8 py-3 select-none flex items-center justify-center gap-2 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer outline-none ${className}`}
+      style={style}
+    >
+      {/* Glow backdrop boundary layer */}
+      <span className="absolute -inset-0.5 bg-gradient-to-r from-primary to-secondary rounded-full opacity-0 group-hover:opacity-30 blur-md transition duration-500 z-0 pointer-events-none" />
+
+      {/* Sweep highlight animation */}
+      <AnimatePresence>
+        {hovered && (
+          <motion.span
+            initial={{ x: '-150%' }}
+            animate={{ x: '180%' }}
+            exit={{ x: '180%' }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="absolute inset-0 w-3/4 h-full bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none z-10 skew-x-12"
+          />
+        )}
+      </AnimatePresence>
+
+      <span className="relative z-10 flex items-center justify-center gap-2">
+        {children}
+      </span>
+    </motion.a>
+  );
+};
+
 const Hero = () => {
   const [roleText, setRoleText] = useState('');
   const [roleIndex, setRoleIndex] = useState(0);
@@ -273,29 +334,30 @@ const Hero = () => {
             variants={itemVariants}
             className="flex flex-wrap gap-4 items-center mb-8"
           >
-            <a
+            <MagneticButton
               href="#projects"
               onClick={scrollToProjects}
-              className="px-8 py-3 rounded-full font-semibold text-dark bg-primary hover:bg-[#00d0e6] transition-all duration-300 shadow-[0_0_15px_rgba(0,242,254,0.4)] hover:shadow-[0_0_25px_rgba(0,242,254,0.7)] transform hover:-translate-y-0.5"
+              className="text-dark bg-gradient-to-r from-primary via-[#4FACFE] to-secondary shadow-[0_0_15px_rgba(0,242,254,0.35)] hover:shadow-[0_0_30px_rgba(0,242,254,0.7)] text-black"
             >
               View Projects
-            </a>
+            </MagneticButton>
             
-            <a
+            <MagneticButton
               href="/Pratiksha_Kalbhor_Resume.pdf"
-              download
-              className="px-6 py-3 rounded-full font-semibold text-white bg-dark-lighter border border-dark-border hover:bg-dark-card hover:border-primary/50 transition-all duration-300 flex items-center gap-2 transform hover:-translate-y-0.5"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white bg-dark-card border border-white/10 hover:border-primary/50 shadow-[0_0_10px_rgba(0,242,254,0.05)] hover:shadow-[0_0_20px_rgba(0,242,254,0.25)]"
             >
-              Download Resume <FaFileDownload size={14} />
-            </a>
+              View Resume <FaFilePdf size={14} className="text-primary group-hover:text-white transition-colors duration-300" />
+            </MagneticButton>
 
-            <a
+            <MagneticButton
               href="#contact"
               onClick={scrollToContact}
-              className="px-6 py-3 rounded-full font-semibold text-white bg-dark-lighter border border-dark-border hover:bg-dark-card hover:border-primary/50 transition-all duration-300 flex items-center gap-2 transform hover:-translate-y-0.5"
+              className="text-white bg-dark-lighter border border-dark-border hover:bg-dark-card hover:border-secondary/50 shadow-[0_0_10px_rgba(121,40,202,0.03)] hover:shadow-[0_0_20px_rgba(121,40,202,0.25)]"
             >
               Contact Me
-            </a>
+            </MagneticButton>
           </motion.div>
           
           {/* Social connections */}
@@ -332,11 +394,12 @@ const Hero = () => {
               </a>
               <a
                 href="/Pratiksha_Kalbhor_Resume.pdf"
-                download
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-primary hover:scale-110 transition-all duration-300 text-2xl"
-                aria-label="Download Resume"
+                aria-label="View Resume"
               >
-                <FaFileDownload />
+                <FaFilePdf />
               </a>
             </div>
           </motion.div>
