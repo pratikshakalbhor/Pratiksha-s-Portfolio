@@ -6,8 +6,8 @@ import emailjs from '@emailjs/browser';
 import confetti from 'canvas-confetti';
 
 const availableFor = [
-  { icon: FaBriefcase, label: 'Open to Internship Opportunities', description: 'Seeking full-time or part-time blockchain and Web3 internship roles.' },
-  { icon: FaUsers, label: 'Collaboration', description: 'Interested in open-source contributions and hackathon collaborations.' },
+  { icon: FaBriefcase, type: 'OPEN TO', label: 'Internship Opportunities', description: 'Looking for Blockchain, Web3, or Full-Stack Development internships.' },
+  { icon: FaUsers, type: 'AVAILABLE FOR', label: 'Collaboration', description: 'Open to open-source projects, hackathons, and innovative Web3 projects.' },
 ];
 
 const Contact = () => {
@@ -108,19 +108,21 @@ const Contact = () => {
           {availableFor.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <div
+              <motion.div
                 key={item.label}
-                className="glassmorphism rounded-2xl p-5 border border-primary/20 bg-primary/5 flex items-start gap-4"
+                whileHover={{ y: -4, boxShadow: '0 0 20px rgba(0, 242, 254, 0.12)', borderColor: 'rgba(0, 242, 254, 0.3)' }}
+                transition={{ duration: 0.3 }}
+                className="group glassmorphism rounded-2xl p-5 border border-primary/10 bg-primary/5 flex items-start gap-4"
               >
-                <div className="p-2.5 rounded-xl bg-primary/15 text-primary text-lg flex-shrink-0" aria-hidden="true">
+                <div className="p-2.5 rounded-xl bg-primary/15 text-primary text-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300" aria-hidden="true">
                   <Icon />
                 </div>
                 <div>
-                  <p className="text-xs font-mono text-gray-500 uppercase tracking-wider mb-0.5">Available for</p>
+                  <p className="text-xs font-mono text-gray-500 uppercase tracking-wider mb-0.5">{item.type}</p>
                   <h3 className="text-sm font-bold text-white">{item.label}</h3>
                   <p className="text-gray-400 text-xs mt-1 leading-relaxed">{item.description}</p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </motion.div>
@@ -138,13 +140,13 @@ const Contact = () => {
               <div>
                 <h3 className="text-2xl font-bold text-white tracking-wide mb-3">Get In Touch</h3>
                 <p className="text-gray-400 text-sm md:text-base leading-relaxed">
-                  If you have an internship opportunity, a project idea, or want to chat about Solidity, DeFi, or Web3 in general — I'd love to hear from you.
+                  Have an internship opportunity, project idea, or collaboration in mind? Feel free to reach out. I'd be happy to connect and discuss.
                 </p>
               </div>
 
               <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary text-lg flex-shrink-0" aria-hidden="true">
+                <div className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary text-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300" aria-hidden="true">
                     <FaEnvelope />
                   </div>
                   <div>
@@ -158,8 +160,8 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-center text-[#7928CA] text-lg flex-shrink-0" aria-hidden="true">
+                <div className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-center text-[#7928CA] text-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300" aria-hidden="true">
                     <FaPhoneAlt />
                   </div>
                   <div>
@@ -168,8 +170,8 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary text-lg flex-shrink-0" aria-hidden="true">
+                <div className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary text-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300" aria-hidden="true">
                     <FaMapMarkerAlt />
                   </div>
                   <div>
@@ -180,9 +182,7 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="glassmorphism p-4 rounded-xl border-white/5 font-mono text-[10px] text-gray-500 mt-8 hidden lg:block">
-              {'>'} Response typically within 24–48 hours.
-            </div>
+            {/* Response notice removed */}
           </motion.div>
 
           {/* Right Column: Form */}
@@ -227,12 +227,12 @@ const Contact = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="Your full name"
+                        placeholder="Enter your full name"
                         autoComplete="name"
                         aria-required="true"
                         aria-invalid={!!errors.name}
                         aria-describedby={errors.name ? 'name-error' : undefined}
-                        className={`w-full bg-[#080B11]/80 border ${errors.name ? 'border-red-500' : 'border-white/10'} hover:border-white/20 focus:border-primary text-gray-100 rounded-xl px-4 py-3 text-sm transition-all focus:outline-none`}
+                        className={`w-full bg-[#080B11]/80 border ${errors.name ? 'border-red-500' : 'border-white/10'} hover:border-white/20 focus:border-primary text-gray-100 rounded-xl px-4 py-3 text-sm transition-all focus:outline-none focus:shadow-[0_0_12px_rgba(0,242,254,0.15)] focus:ring-1 focus:ring-primary/25`}
                       />
                       {errors.name && <span id="name-error" className="text-red-500 text-[10px] font-mono mt-0.5" role="alert">{errors.name}</span>}
                     </div>
@@ -246,12 +246,12 @@ const Contact = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="you@example.com"
+                        placeholder="Enter your email address"
                         autoComplete="email"
                         aria-required="true"
                         aria-invalid={!!errors.email}
                         aria-describedby={errors.email ? 'email-error' : undefined}
-                        className={`w-full bg-[#080B11]/80 border ${errors.email ? 'border-red-500' : 'border-white/10'} hover:border-white/20 focus:border-primary text-gray-100 rounded-xl px-4 py-3 text-sm transition-all focus:outline-none`}
+                        className={`w-full bg-[#080B11]/80 border ${errors.email ? 'border-red-500' : 'border-white/10'} hover:border-white/20 focus:border-primary text-gray-100 rounded-xl px-4 py-3 text-sm transition-all focus:outline-none focus:shadow-[0_0_12px_rgba(0,242,254,0.15)] focus:ring-1 focus:ring-primary/25`}
                       />
                       {errors.email && <span id="email-error" className="text-red-500 text-[10px] font-mono mt-0.5" role="alert">{errors.email}</span>}
                     </div>
@@ -265,9 +265,9 @@ const Contact = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+91..."
+                        placeholder="(Optional)"
                         autoComplete="tel"
-                        className="w-full bg-[#080B11]/80 border border-white/10 hover:border-white/20 focus:border-primary text-gray-100 rounded-xl px-4 py-3 text-sm transition-all focus:outline-none"
+                        className="w-full bg-[#080B11]/80 border border-white/10 hover:border-white/20 focus:border-primary text-gray-100 rounded-xl px-4 py-3 text-sm transition-all focus:outline-none focus:shadow-[0_0_12px_rgba(0,242,254,0.15)] focus:ring-1 focus:ring-primary/25"
                       />
                     </div>
 
@@ -280,21 +280,23 @@ const Contact = () => {
                         value={formData.message}
                         onChange={handleChange}
                         rows="5"
-                        placeholder="Hi Pratiksha, I'd like to discuss..."
+                        placeholder="Tell me about your opportunity or project..."
                         aria-required="true"
                         aria-invalid={!!errors.message}
                         aria-describedby={errors.message ? 'message-error' : undefined}
-                        className={`w-full bg-[#080B11]/80 border ${errors.message ? 'border-red-500' : 'border-white/10'} hover:border-white/20 focus:border-primary text-gray-100 rounded-xl px-4 py-3 text-sm transition-all focus:outline-none resize-none`}
+                        className={`w-full bg-[#080B11]/80 border ${errors.message ? 'border-red-500' : 'border-white/10'} hover:border-white/20 focus:border-primary text-gray-100 rounded-xl px-4 py-3 text-sm transition-all focus:outline-none resize-none focus:shadow-[0_0_12px_rgba(0,242,254,0.15)] focus:ring-1 focus:ring-primary/25`}
                       />
                       {errors.message && <span id="message-error" className="text-red-500 text-[10px] font-mono mt-0.5" role="alert">{errors.message}</span>}
                     </div>
 
                     {/* Submit */}
                     <div className="pt-2">
-                      <button
+                      <motion.button
                         type="submit"
                         disabled={status === 'sending'}
-                        className="w-full py-3.5 rounded-xl font-semibold bg-primary hover:bg-[#00d0e6] text-dark shadow-[0_0_15px_rgba(0,242,254,0.3)] transition-all duration-300 flex items-center justify-center gap-2 transform active:scale-98 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary"
+                        whileHover={{ scale: 1.015, boxShadow: "0 0 25px rgba(0, 242, 254, 0.45)" }}
+                        whileTap={{ scale: 0.98 }}
+                        className="w-full py-3.5 rounded-xl font-semibold bg-gradient-to-r from-primary to-secondary hover:from-[#00d0e6] hover:to-[#8b3eff] text-black shadow-[0_0_15px_rgba(0,242,254,0.3)] transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary"
                       >
                         {status === 'sending' ? (
                           <>
@@ -305,7 +307,7 @@ const Contact = () => {
                             <FaPaperPlane aria-hidden="true" /> Send Message
                           </>
                         )}
-                      </button>
+                      </motion.button>
                     </div>
 
                     {status === 'error' && (
