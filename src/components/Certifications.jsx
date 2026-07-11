@@ -1,21 +1,13 @@
-import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
-import { FaCertificate, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { GoVerified } from 'react-icons/go';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay, EffectCoverflow } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/effect-coverflow';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaExternalLinkAlt, FaChevronLeft, FaChevronRight, FaTimes, FaSearchPlus, FaSearchMinus, FaUndo } from 'react-icons/fa';
 import { certificatesList } from '../data/certificates';
 
 const issuers = {
-  'Coursera': '#0056D2',
-  'NPTEL': '#EA4335',
-  'Udemy': '#A435F0',
-  'freeCodeCamp': '#0A0A23',
-  'GitHub': '#24292e',
-  'IBM': '#006699',
+  'Rise in': '#00F2FE',
+  'Udemy': '#00F2FE',
+  'Simplilearn': '#00F2FE',
   'default': '#00F2FE',
 };
 
@@ -28,74 +20,105 @@ const getIssuerColor = (issuer) => {
   return issuers.default;
 };
 
-const CertCard = ({ cert }) => {
+const CertCard = ({ cert, onView }) => {
   const color = getIssuerColor(cert.issuer);
+  const hasImage = cert.image && cert.image !== '#' && cert.image !== '';
 
   return (
     <motion.article
-      whileHover={{ y: -8, rotateX: 4, rotateY: -4, scale: 1.02 }}
+      whileHover={{ y: -8, scale: 1.02 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className="glassmorphism rounded-2xl p-6 border border-white/5 shadow-xl flex flex-col justify-between h-full relative overflow-hidden group cursor-default select-none"
-      style={{ transformStyle: 'preserve-3d', perspective: '600px' }}
+      className="glassmorphism rounded-2xl p-6 border border-white/5 shadow-xl flex flex-col justify-between h-full relative overflow-hidden group cursor-default select-none animate-fadeIn"
     >
       {/* Glow on hover */}
       <div
-        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{ boxShadow: `inset 0 0 30px ${color}22, 0 0 25px ${color}18` }}
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+        style={{ boxShadow: `0 0 30px ${color}22, inset 0 0 20px ${color}15` }}
       />
 
-      {/* Corner background icon */}
-      <div
-        className="absolute -right-4 -bottom-4 text-7xl transform rotate-12 transition-colors duration-500 pointer-events-none"
-        style={{ color: `${color}18` }}
-        aria-hidden="true"
-      >
-        <FaCertificate />
-      </div>
-
-      {/* Issuer bar */}
-      <div
-        className="text-[10px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full w-fit mb-4"
-        style={{ backgroundColor: `${color}18`, color, border: `1px solid ${color}40` }}
-      >
-        {cert.issuer}
-      </div>
-
       <div>
-        <h3 className="text-base font-bold text-white tracking-wide group-hover:text-primary transition-colors duration-300 mb-3 leading-snug">
+        {/* Issuer */}
+        <div
+          className="text-[10px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full w-fit mb-4"
+          style={{ backgroundColor: `${color}18`, color, border: `1px solid ${color}40` }}
+        >
+          {cert.issuer}
+        </div>
+
+        {/* Certificate Name */}
+        <h3 className="text-base font-bold text-white tracking-wide group-hover:text-primary transition-colors duration-300 mb-6 leading-snug">
           {cert.title}
         </h3>
-
-        {/* Verified badge */}
-        <div className="flex items-center gap-1.5 mb-4">
-          <GoVerified className="text-emerald-400" size={13} aria-hidden="true" />
-          <span className="text-emerald-400 text-[10px] font-mono font-semibold">VERIFIED CREDENTIAL</span>
-        </div>
       </div>
 
       {/* Footer */}
-      <div className="pt-4 border-t border-white/5 flex items-center justify-between z-10">
+      <div className="pt-4 border-t border-white/5 flex items-center justify-between relative z-10 mt-auto">
         <span className="text-[10px] font-mono text-gray-500">Year: <span className="text-primary">{cert.date}</span></span>
-        <a
-          href={cert.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-xs font-mono font-semibold flex items-center gap-1.5 transition-colors duration-300 focus:outline-none"
-          style={{ color }}
-          aria-label={`View certificate for ${cert.title}`}
-          onMouseEnter={e => e.currentTarget.style.color = '#fff'}
-          onMouseLeave={e => e.currentTarget.style.color = color}
-        >
-          View Cert <FaExternalLinkAlt size={9} aria-hidden="true" />
-        </a>
+        {hasImage ? (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onView();
+            }}
+            className="text-xs font-mono font-semibold flex items-center gap-1.5 transition-colors duration-300 focus:outline-none bg-transparent border-none cursor-pointer relative z-20"
+            style={{ color }}
+            aria-label={`View certificate for ${cert.title}`}
+            onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+            onMouseLeave={e => e.currentTarget.style.color = color}
+          >
+            View Certificate <FaExternalLinkAlt size={9} aria-hidden="true" />
+          </button>
+        ) : (
+          <span
+            className="text-xs font-mono font-semibold text-gray-500 cursor-not-allowed select-none"
+            aria-label="Certificate Coming Soon"
+          >
+            Certificate Coming Soon
+          </span>
+        )}
       </div>
     </motion.article>
   );
 };
 
 const Certifications = () => {
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [zoom, setZoom] = useState(1);
+  const [imageError, setImageError] = useState(false);
+
+  // Reset zoom and error status on index change
+  useEffect(() => {
+    setZoom(1);
+    setImageError(false);
+  }, [selectedIndex]);
+
+  const handlePrev = (e) => {
+    if (e) e.stopPropagation();
+    setSelectedIndex((prev) => (prev === 0 ? certificatesList.length - 1 : prev - 1));
+  };
+
+  const handleNext = (e) => {
+    if (e) e.stopPropagation();
+    setSelectedIndex((prev) => (prev === certificatesList.length - 1 ? 0 : prev + 1));
+  };
+
+  // Handle escape key and arrow navigations
+  useEffect(() => {
+    if (selectedIndex === null) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedIndex(null);
+      } else if (e.key === 'ArrowLeft') {
+        handlePrev();
+      } else if (e.key === 'ArrowRight') {
+        handleNext();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedIndex]);
+
+  const activeCert = selectedIndex !== null ? certificatesList[selectedIndex] : null;
 
   return (
     <section id="certificates" aria-labelledby="certificates-heading" className="py-24 relative overflow-hidden bg-dark">
@@ -120,47 +143,134 @@ const Certifications = () => {
           <p className="text-gray-400 text-sm mt-6 tracking-widest font-mono">CREDENTIAL VERIFICATION MATRIX</p>
         </div>
 
-        {/* Swiper Carousel */}
-        <div className="relative">
-          {/* Nav buttons */}
-          <button
-            ref={prevRef}
-            className="cert-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-10 h-10 rounded-full bg-dark-lighter border border-white/10 hover:border-primary/50 text-gray-400 hover:text-primary transition-all duration-300 flex items-center justify-center shadow-lg focus:outline-none"
-            aria-label="Previous certificate"
-          >
-            <FaChevronLeft size={13} />
-          </button>
-          <button
-            ref={nextRef}
-            className="cert-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-10 h-10 rounded-full bg-dark-lighter border border-white/10 hover:border-primary/50 text-gray-400 hover:text-primary transition-all duration-300 flex items-center justify-center shadow-lg focus:outline-none"
-            aria-label="Next certificate"
-          >
-            <FaChevronRight size={13} />
-          </button>
-
-          <Swiper
-            modules={[Navigation, Autoplay]}
-            spaceBetween={24}
-            slidesPerView={1}
-            autoplay={{ delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true }}
-            navigation={{ prevEl: '.cert-prev', nextEl: '.cert-next' }}
-            breakpoints={{
-              640: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-            }}
-            className="py-6 px-2"
-          >
-            {certificatesList.map((cert) => (
-              <SwiperSlide key={cert.id} className="h-auto">
-                <CertCard cert={cert} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+        {/* 2x2 Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto py-6">
+          {certificatesList.map((cert, index) => (
+            <CertCard key={cert.id} cert={cert} onView={() => setSelectedIndex(index)} />
+          ))}
         </div>
 
       </div>
+
+      {/* Lightbox / Modal - Transported to document.body to bypass Framer Motion parent bounds */}
+      {typeof window !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {selectedIndex !== null && activeCert && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-black/85 backdrop-blur-md p-4 md:p-6"
+              onClick={() => setSelectedIndex(null)}
+            >
+              {/* Top Bar with actions */}
+              <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-50 select-none">
+                <div className="text-white font-mono text-xs md:text-sm bg-black/40 backdrop-blur-sm px-4 py-2 border border-white/10 rounded-full">
+                  {selectedIndex + 1} / {certificatesList.length}
+                </div>
+
+                {/* Title inside lightbox */}
+                <div className="hidden md:block text-white font-bold tracking-wide bg-black/40 backdrop-blur-sm px-6 py-2 border border-white/10 rounded-full max-w-xl truncate">
+                  {activeCert.title}
+                </div>
+
+                {/* Controls */}
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setZoom(prev => Math.min(prev + 0.25, 3)); }}
+                    className="w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 border border-white/10 hover:border-primary/50 text-white flex items-center justify-center transition-all duration-200 cursor-pointer"
+                    title="Zoom In"
+                  >
+                    <FaSearchPlus size={16} />
+                  </button>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setZoom(prev => Math.max(prev - 0.25, 1)); }}
+                    className="w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 border border-white/10 hover:border-primary/50 text-white flex items-center justify-center transition-all duration-200 cursor-pointer"
+                    title="Zoom Out"
+                  >
+                    <FaSearchMinus size={16} />
+                  </button>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setZoom(1); }}
+                    className="w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 border border-white/10 hover:border-primary/50 text-white flex items-center justify-center transition-all duration-200 cursor-pointer"
+                    title="Reset Zoom"
+                  >
+                    <FaUndo size={14} />
+                  </button>
+                  <button
+                    onClick={() => setSelectedIndex(null)}
+                    className="w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 border border-white/10 hover:border-red-500/50 text-white flex items-center justify-center transition-all duration-200 ml-2 cursor-pointer"
+                    title="Close"
+                  >
+                    <FaTimes size={16} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Central Area: Prev - ImageContainer - Next */}
+              <div className="relative w-full h-[80vh] flex items-center justify-center">
+                {/* Previous Button */}
+                <button
+                  onClick={handlePrev}
+                  className="absolute left-2 md:left-6 z-50 w-12 h-12 rounded-full bg-black/40 border border-white/10 hover:border-primary/50 hover:bg-black/60 text-white flex items-center justify-center transition-all duration-200 cursor-pointer"
+                  title="Previous Certificate"
+                >
+                  <FaChevronLeft size={18} />
+                </button>
+
+                {/* Image Container with scale motion */}
+                <motion.div
+                  initial={{ scale: 0.95, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.95, opacity: 0 }}
+                  transition={{ type: 'spring', damping: 25, stiffness: 350 }}
+                  className="relative max-w-[90%] max-h-[85%] overflow-hidden rounded-lg flex items-center justify-center select-none"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="overflow-auto max-w-full max-h-full scrollbar-none flex items-center justify-center">
+                    {imageError ? (
+                      <div className="text-center p-8 bg-red-950/20 border border-red-500/30 rounded-xl max-w-md select-text">
+                        <p className="text-red-400 font-bold mb-2">Error Loading Certificate</p>
+                        <p className="text-gray-400 text-xs font-mono">
+                          The requested certificate file could not be loaded or is missing from the server.
+                        </p>
+                      </div>
+                    ) : (
+                      <motion.img
+                        src={activeCert.image}
+                        alt={activeCert.title}
+                        onError={() => setImageError(true)}
+                        className="max-w-full max-h-[75vh] object-contain rounded transition-transform duration-200 origin-center"
+                        style={{ transform: `scale(${zoom})`, cursor: zoom > 1 ? 'grab' : 'zoom-in' }}
+                      />
+                    )}
+                  </div>
+                </motion.div>
+
+                {/* Next Button */}
+                <button
+                  onClick={handleNext}
+                  className="absolute right-2 md:right-6 z-50 w-12 h-12 rounded-full bg-black/40 border border-white/10 hover:border-primary/50 hover:bg-black/60 text-white flex items-center justify-center transition-all duration-200 cursor-pointer"
+                  title="Next Certificate"
+                >
+                  <FaChevronRight size={18} />
+                </button>
+              </div>
+
+              {/* Bottom Info Details */}
+              <div className="absolute bottom-6 left-6 right-6 text-center select-none pointer-events-none">
+                <p className="text-gray-400 text-xs md:text-sm font-mono tracking-widest uppercase">
+                  {activeCert.issuer} — {activeCert.date}
+                </p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </section>
   );
 };
 
 export default Certifications;
+
