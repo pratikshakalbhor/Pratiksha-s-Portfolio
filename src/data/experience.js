@@ -24,6 +24,6 @@ export const experienceList = [
     duration: '2025',
     type: 'bootcamp',
     description:
-      'Completed intensive training in fundamentals of C/C++ programming, relational SQL database design, and algorithmic problem-solving.',
+      'Completed hands-on training through Samsung Innovation Campus, learning Python (Basic), programming fundamentals, and practical project-based development.',
   },
 ];
