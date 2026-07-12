@@ -1,21 +1,19 @@
 export const projectsList = [
   {
-    id: 'ecochain',
-    title: 'EcoChain',
-    category: 'Blockchain + Sustainability',
+    id: 'dataproof',
+    title: 'DataProof',
+    category: 'Blockchain Document Verification',
     overview:
-      'A blockchain-based platform for tree plantation, carbon credit tracking, and environmental transparency using smart contracts.',
-    image: '/images/powerbi.png',
+      'A blockchain-based document verification system that ensures secure and tamper-proof validation of digital records.',
     features: [
-      'Tree Plantation Tracking',
-      'Carbon Credit System',
-      'Smart Contracts',
-      'User Authentication',
-      'Dashboard',
+      'Document Verification',
+      'Hash Generation',
+      'Secure Storage',
+      'Verification Dashboard',
     ],
-    tags: ['React.js', 'JavaScript', 'Solidity', 'Hardhat', 'MongoDB', 'Tailwind CSS'],
-    github: 'https://github.com/pratikshakalbhor/ecochain',
-    demo: 'https://ecochain-tracker.vercel.app',
+    tags: ['Solidity', 'React.js', 'MongoDB', 'JavaScript'],
+    github: 'https://github.com/pratikshakalbhor/DataProof',
+    demo: 'https://file-proof.vercel.app/',
   },
   {
     id: 'freelancechain',
@@ -23,7 +21,6 @@ export const projectsList = [
     category: 'Web3 Freelancing Platform',
     overview:
       'A decentralized freelancing platform that uses Solidity smart contracts for secure payments and milestone-based transactions.',
-    image: '/images/blockchain.png',
     features: [
       'Smart Escrow',
       'Wallet Connection',
@@ -36,11 +33,10 @@ export const projectsList = [
   },
   {
     id: 'nft-dapp',
-    title: 'NFT DApp',
+    title: 'Stellar NFT Marketplace',
     category: 'Web3 NFT Marketplace',
     overview:
       'A decentralized NFT application where users can mint, manage, and explore NFTs using Ethereum smart contracts.',
-    image: '/images/webdev.png',
     features: [
       'NFT Minting',
       'Wallet Authentication',
@@ -49,24 +45,25 @@ export const projectsList = [
     ],
     tags: ['Solidity', 'React.js', 'Hardhat', 'IPFS', 'MetaMask'],
     github: 'https://github.com/pratikshakalbhor/nft-dapp',
-    demo: 'https://nft-dapp-demo.vercel.app',
+    demo: 'https://nft-dapp-sigma-red.vercel.app/',
   },
   {
-    id: 'dataproof',
-    title: 'DataProof',
-    category: 'Blockchain Document Verification',
+    id: 'ecochain',
+    title: 'EcoChain',
+    category: 'Blockchain + Sustainability',
     overview:
-      'A blockchain-based document verification system that ensures secure and tamper-proof validation of digital records.',
-    image: '/images/sql.png',
+      'A blockchain-based platform for tree plantation, carbon credit tracking, and environmental transparency using smart contracts.',
     features: [
-      'Document Verification',
-      'Hash Generation',
-      'Secure Storage',
-      'Verification Dashboard',
+      'Tree Plantation Tracking',
+      'Carbon Credit System',
+      'Smart Contracts',
+      'User Authentication',
+      'Dashboard',
     ],
-    tags: ['Solidity', 'React.js', 'MongoDB', 'JavaScript'],
-    github: 'https://github.com/pratikshakalbhor/DataProof',
-    demo: 'https://file-proof.vercel.app/',
+    tags: ['React.js', 'JavaScript', 'Solidity', 'Hardhat', 'MongoDB', 'Tailwind CSS'],
+    github: 'https://github.com/pratikshakalbhor/ecochain',
+    demo: 'https://ecochain-tracker.vercel.app',
+    underDevelopment: true,
   },
   {
     id: 'tokenomics',
@@ -74,11 +71,11 @@ export const projectsList = [
     category: 'Academic Project',
     overview:
       'A collection of Solidity smart contracts implementing tokenomics concepts such as ERC-20 tokens, staking, and reward mechanisms.',
-    image: null,
     features: [],
     tags: ['Solidity', 'Hardhat'],
     github: 'https://github.com/pratikshakalbhor/tokenomics-contracts',
     demo: null,
+    academic: true,
   },
   {
     id: 'distributed-systems',
@@ -86,10 +83,10 @@ export const projectsList = [
     category: 'Academic Project',
     overview:
       'Practical implementations covering distributed systems concepts and blockchain fundamentals as part of university coursework.',
-    image: null,
     features: [],
     tags: ['JavaScript', 'Blockchain'],
     github: 'https://github.com/pratikshakalbhor/distributed-systems-practicals',
     demo: null,
+    academic: true,
   },
 ];

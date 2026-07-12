@@ -37,13 +37,17 @@ const CurrentlyLearning = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ type: 'spring', stiffness: 100, damping: 15, delay: idx * 0.08 }}
-                whileHover={{ y: -5 }}
-                className="glassmorphism rounded-2xl p-6 border border-white/5 hover:border-primary/30 transition-all duration-300 shadow-xl flex flex-col gap-4"
+                whileHover={{
+                  y: -8,
+                  boxShadow: `0 0 25px ${item.statusColor}1A, 0 8px 32px rgba(0,0,0,0.37)`,
+                  borderColor: `${item.statusColor}50`
+                }}
+                className="group glassmorphism rounded-2xl p-6 border border-white/5 transition-all duration-300 shadow-xl flex flex-col gap-4 cursor-default"
               >
                 {/* Icon + Status Row */}
                 <div className="flex items-start justify-between">
                   <div
-                    className="p-3 rounded-xl text-xl"
+                    className="p-3 rounded-xl text-xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-6"
                     style={{
                       backgroundColor: `${item.statusColor}15`,
                       color: item.statusColor,
@@ -67,8 +71,9 @@ const CurrentlyLearning = () => {
                 </div>
 
                 {/* Text */}
-                <div>
-                  <h3 className="text-base font-bold text-white">{item.topic}</h3>
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-base font-bold text-white tracking-wide">{item.topic}</h3>
+                  <p className="text-gray-400 text-xs leading-relaxed font-sans">{item.description}</p>
                 </div>
               </motion.div>
             );
@@ -81,3 +86,4 @@ const CurrentlyLearning = () => {
 };
 
 export default CurrentlyLearning;
+

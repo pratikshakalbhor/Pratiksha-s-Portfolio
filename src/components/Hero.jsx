@@ -10,11 +10,15 @@ const roleStrings = [
   'Web3 Builder',
 ];
 
-// Simple mouse-tracking 3D orb component
+// Interactive 3D orbital blockchain atom component (Stable Atomic/Solar System Orbit)
 const BlockchainOrb = () => {
   const orbRef = useRef(null);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+  const [angleOffset, setAngleOffset] = useState(0);
+  const angleRef = useRef(0);
 
+  // Sync cursor movements for subtle 3D parallax orientation tilt
   useEffect(() => {
     const handleMouseMove = (e) => {
       if (!orbRef.current) return;
@@ -22,125 +26,231 @@ const BlockchainOrb = () => {
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
       setMouse({
-        x: ((e.clientX - cx) / (rect.width / 2)) * 10,
-        y: ((e.clientY - cy) / (rect.height / 2)) * -10,
+        x: ((e.clientX - cx) / (rect.width / 2)) * 6,
+        y: ((e.clientY - cy) / (rect.height / 2)) * -6,
       });
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const orbNodes = [
-    { angle: 0,   radius: 185, color: '#00F2FE', size: 12, label: 'Solidity' },
-    { angle: 60,  radius: 200, color: '#A855F7', size: 11, label: 'React' },
-    { angle: 120, radius: 175, color: '#00F2FE', size: 13, label: 'Web3.js' },
-    { angle: 180, radius: 192, color: '#05FFCC', size: 10, label: 'Hardhat' },
-    { angle: 240, radius: 210, color: '#A855F7', size: 11, label: 'IPFS' },
-    { angle: 300, radius: 180, color: '#00F2FE', size: 12, label: 'Ethers.js' },
+  // requestAnimationFrame loop with angle accumulation ref to prevent speed change jumps/jitter
+  useEffect(() => {
+    let animId;
+    const step = () => {
+      const currentSpeed = isHovered ? 0.0022 : 0.0065;
+      angleRef.current = (angleRef.current + currentSpeed) % (Math.PI * 2);
+      setAngleOffset(angleRef.current);
+      animId = requestAnimationFrame(step);
+    };
+    animId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animId);
+  }, [isHovered]);
+
+  const rings = [
+    { rx: 215, ry: 68, rotateBase: 0,   duration: 9,  color: 'rgba(0,242,254,0.45)', clockwise: true },
+    { rx: 192, ry: 60, rotateBase: 60,  duration: 13, color: 'rgba(168,85,247,0.35)', clockwise: false },
+    { rx: 232, ry: 74, rotateBase: -35, duration: 17, color: 'rgba(5,255,204,0.3)',  clockwise: true },
   ];
 
-  // rotateBase is numeric (degrees) so Framer Motion can interpolate safely
-  const rings = [
-    { rx: 215, ry: 68, rotateBase: 0,   duration: 8,  color: 'rgba(0,242,254,0.4)' },
-    { rx: 192, ry: 60, rotateBase: 60,  duration: 11, color: 'rgba(168,85,247,0.3)' },
-    { rx: 232, ry: 74, rotateBase: -35, duration: 14, color: 'rgba(5,255,204,0.25)' },
+  // Distribute the 6 nodes exactly back-to-back on the 3 orbital rings
+  const orbNodes = [
+    { label: 'Solidity',  ringIndex: 0, phaseOffset: 0,            color: '#00F2FE', size: 11 },
+    { label: 'Hardhat',   ringIndex: 0, phaseOffset: Math.PI,     color: '#05FFCC', size: 9  },
+    { label: 'React',     ringIndex: 1, phaseOffset: 0,            color: '#A855F7', size: 10 },
+    { label: 'IPFS',      ringIndex: 1, phaseOffset: Math.PI,     color: '#A855F7', size: 10 },
+    { label: 'Web3.js',   ringIndex: 2, phaseOffset: 0,            color: '#00F2FE', size: 12 },
+    { label: 'Ethers.js', ringIndex: 2, phaseOffset: Math.PI,     color: '#00F2FE', size: 11 },
   ];
+
+  // Mathematical mapping of node positions tracing the tilted ellipse paths
+  const getNodeProps = (node) => {
+    const ring = rings[node.ringIndex];
+    const direction = ring.clockwise ? 1 : -1;
+    // Keep different orbit speeds synchronized with the ring's customized rates
+    const speedMult = 9 / ring.duration;
+    const angle = angleOffset * direction * speedMult + node.phaseOffset;
+
+    // Position coordinates along the local unrotated flat ellipse path
+    const lx = ring.rx * Math.cos(angle);
+    const ly = ring.ry * Math.sin(angle);
+
+    // Rotate local coordinate to align with ring rotation orientation
+    const rad = (ring.rotateBase * Math.PI) / 180;
+    const x = lx * Math.cos(rad) - ly * Math.sin(rad);
+    const y = lx * Math.sin(rad) + ly * Math.cos(rad);
+
+    // Depth check relative to Y-coordinate displacement for 3D stack ordering
+    const zIndex = ly > 0 ? 30 : 5;
+
+    return { x, y, zIndex };
+  };
 
   return (
     <motion.div
       ref={orbRef}
-      className="relative w-[560px] h-[560px] mx-auto flex items-center justify-center"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative w-[560px] h-[560px] mx-auto flex items-center justify-center select-none"
       animate={{
         rotateX: mouse.y,
         rotateY: mouse.x,
         y: [0, -10, 0],
       }}
       transition={{
-        rotateX: { type: 'spring', stiffness: 60, damping: 20 },
-        rotateY: { type: 'spring', stiffness: 60, damping: 20 },
-        y: { repeat: Infinity, duration: 4, ease: 'easeInOut' },
+        rotateX: { type: 'spring', stiffness: 50, damping: 20 },
+        rotateY: { type: 'spring', stiffness: 50, damping: 20 },
+        y: { repeat: Infinity, duration: 4.5, ease: 'easeInOut' },
       }}
-      style={{ transformStyle: 'preserve-3d', perspective: '600px' }}
+      style={{ transformStyle: 'preserve-3d', perspective: '800px' }}
     >
-      {/* Background pulse glow */}
-      <motion.div
-        className="absolute w-[380px] h-[380px] rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(0,242,254,0.18) 0%, transparent 70%)' }}
-        animate={{ scale: [1, 1.18, 1] }}
-        transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
+      {/* Styles for breathing central glow card and pulse effects */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes breathScale {
+          0%, 100% { transform: scale(1); opacity: 0.65; }
+          50% { transform: scale(1.12); opacity: 0.95; }
+        }
+        @keyframes nodePulseAnim {
+          0%, 100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 16px var(--node-glow); }
+          50% { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 26px var(--node-glow); }
+        }
+        .breathing-glow-bg {
+          animation: breathScale 4.5s infinite ease-in-out;
+        }
+      `}} />
+
+      {/* Breathing background glow behind core */}
+      <div
+        className="absolute w-[350px] h-[350px] rounded-full breathing-glow-bg pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(0,242,254,0.18) 0%, rgba(168,85,247,0.06) 45%, transparent 70%)',
+          opacity: isHovered ? 1 : 0.85,
+          transition: 'opacity 0.4s ease',
+        }}
       />
 
-      {/* Core sphere — simple CSS spin to avoid Framer Motion positionalValues error */}
+      {/* Subtle floating particles around the center */}
+      {[...Array(10)].map((_, i) => {
+        const rad = (i * 36 * Math.PI) / 180;
+        const dist = 75 + (i % 3) * 35; 
+        const px = Math.cos(rad) * dist;
+        const py = Math.sin(rad) * dist * 0.55;
+        return (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 rounded-full bg-primary/45 pointer-events-none"
+            style={{ left: '50%', top: '50%' }}
+            animate={{
+              x: [px, px + 8, px - 8, px],
+              y: [py, py - 6, py + 6, py],
+              scale: [0.6, 1.2, 0.6],
+              opacity: [0.3, 0.8, 0.3],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 4.5 + (i % 3) * 1.5,
+              ease: 'easeInOut',
+              delay: i * 0.25,
+            }}
+          />
+        );
+      })}
+
+      {/* Core sphere with glowing, centered Ethereum logo */}
       <div
-        className="absolute w-56 h-56 rounded-full z-10 flex items-center justify-center"
+        className="absolute w-56 h-56 rounded-full Restoration-Center z-10 flex items-center justify-center pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at 35% 35%, rgba(0,242,254,0.55) 0%, rgba(8,11,17,0.95) 60%, rgba(121,40,202,0.35) 100%)',
-          boxShadow: '0 0 80px rgba(0,242,254,0.45), inset 0 0 50px rgba(0,242,254,0.22)',
-          border: '2px solid rgba(0,242,254,0.45)',
-          animation: 'spin 12s linear infinite',
+          background: 'radial-gradient(circle at 35% 35%, rgba(0,242,254,0.55) 0%, rgba(8,11,17,0.98) 60%, rgba(121,40,202,0.38) 100%)',
+          boxShadow: isHovered 
+            ? '0 0 90px rgba(0,242,254,0.55), inset 0 0 55px rgba(0,242,254,0.25)' 
+            : '0 0 70px rgba(0,242,254,0.4), inset 0 0 45px rgba(0,242,254,0.18)',
+          border: isHovered
+            ? '2.5px solid rgba(0,242,254,0.55)'
+            : '1.5px solid rgba(0,242,254,0.4)',
+          transition: 'all 0.4s ease',
         }}
       >
-        <SiEthereum className="text-7xl text-primary opacity-90 filter drop-shadow-[0_0_18px_rgba(0,242,254,0.95)]"
-          style={{ animation: 'spin 12s linear infinite reverse' }}
+        <SiEthereum
+          className="text-7xl text-primary opacity-90 filter drop-shadow-[0_0_18px_rgba(0,242,254,0.95)]"
+          style={{
+            animation: `spin 15s linear infinite reverse`,
+            animationPlayState: isHovered ? 'paused' : 'running',
+          }}
         />
       </div>
 
-      {/* Orbital rings — pure CSS animation to avoid Framer Motion deg string issues */}
-      {rings.map((ring, i) => (
-        <div
-          key={i}
-          className="absolute rounded-full"
-          style={{
-            width: `${ring.rx * 2}px`,
-            height: `${ring.ry * 2}px`,
-            border: `1px solid ${ring.color}`,
-            transform: `rotateZ(${ring.rotateBase}deg) rotateX(75deg)`,
-            animation: `spin ${ring.duration}s linear infinite`,
-          }}
-        />
-      ))}
+      {/* Orbital rings - synchronized and alternated */}
+      {rings.map((ring, i) => {
+        const directionMultiplier = ring.clockwise ? 1 : -1;
+        const currentAngle = ((angleOffset * 180) / Math.PI) * directionMultiplier * (9 / ring.duration);
 
-      {/* Orbiting nodes */}
-      {orbNodes.map((node, i) => {
-        const rad = (node.angle * Math.PI) / 180;
-        const x = Math.cos(rad) * node.radius;
-        const y = Math.sin(rad) * node.radius * 0.4; // flattened for 3D look
         return (
-          <motion.div
-            key={node.label}
-            className="absolute z-20"
-            style={{ left: '50%', top: '50%' }}
-            animate={{
-              x: [x, x * 0.92, x],
-              y: [y, y * 0.88, y],
+          <div
+            key={i}
+            className="absolute rounded-full pointer-events-none"
+            style={{
+              width: `${ring.rx * 2}px`,
+              height: `${ring.ry * 2}px`,
+              border: `1px solid ${ring.color}`,
+              transform: `rotateZ(${ring.rotateBase}deg) rotateX(75deg) rotate(${currentAngle}deg)`,
+              boxShadow: isHovered ? `0 0 10px ${ring.color}` : 'none',
+              transition: 'box-shadow 0.4s ease, border-color 0.4s ease',
             }}
-            transition={{ repeat: Infinity, duration: 3 + i * 0.5, ease: 'easeInOut', delay: i * 0.3 }}
+          />
+        );
+      })}
+
+      {/* Orbiting nodes bound strictly to their orbital paths */}
+      {orbNodes.map((node, i) => {
+        const { x, y, zIndex } = getNodeProps(node);
+
+        return (
+          <div
+            key={node.label}
+            className="absolute"
+            style={{
+              left: '50%',
+              top: '50%',
+              zIndex: zIndex,
+              transform: `translate(${x}px, ${y}px) translate(-50%, -50%)`,
+              pointerEvents: 'auto',
+            }}
           >
             <motion.div
-              className="rounded-full flex items-center justify-center relative"
+              className="rounded-full flex items-center justify-center relative cursor-help"
               style={{
                 width: `${node.size * 2 + 10}px`,
                 height: `${node.size * 2 + 10}px`,
-                backgroundColor: `${node.color}28`,
+                backgroundColor: `${node.color}25`,
                 border: `1.5px solid ${node.color}80`,
-                boxShadow: `0 0 16px ${node.color}70`,
-                transform: 'translate(-50%, -50%)',
+                boxShadow: isHovered 
+                  ? `0 0 20px ${node.color}90` 
+                  : `0 0 12px ${node.color}60`,
+                transition: 'border-color 0.4s ease, box-shadow 0.4s ease',
+                '--node-glow': node.color,
+                animation: 'nodePulseAnim 3.5s infinite ease-in-out',
+                animationDelay: `${i * 0.4}s`,
               }}
-              whileHover={{ scale: 1.5 }}
+              whileHover={{ scale: 1.25 }}
             >
               <div
                 className="rounded-full"
-                style={{ width: node.size + 2, height: node.size + 2, backgroundColor: node.color, boxShadow: `0 0 6px ${node.color}` }}
+                style={{
+                  width: node.size + 2,
+                  height: node.size + 2,
+                  backgroundColor: node.color,
+                  boxShadow: `0 0 6px ${node.color}`,
+                }}
               />
-              {/* Label */}
+              {/* Stable, non-rotating Label */}
               <div
-                className="absolute -bottom-7 left-1/2 -translate-x-1/2 text-[11px] font-mono font-semibold whitespace-nowrap opacity-80"
+                className="absolute -bottom-7 left-1/2 -translate-x-1/2 text-[10px] font-mono font-bold tracking-wider whitespace-nowrap opacity-90 select-none transition-transform duration-300"
                 style={{ color: node.color }}
               >
                 {node.label}
               </div>
             </motion.div>
-          </motion.div>
+          </div>
         );
       })}
     </motion.div>
