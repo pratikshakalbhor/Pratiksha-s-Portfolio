@@ -1,15 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import {
-  SiSolidity, SiEthereum, SiJavascript, SiReact,
-  SiMongodb, SiGit, SiGithub, SiHtml5, SiGo, SiRust,
+  SiSolidity, SiJavascript,
+  SiMongodb, SiGit, SiGithub, SiHtml5, SiGo,
   SiDocker, SiVercel
 } from 'react-icons/si';
 import {
-  FaHardHat, FaDatabase, FaCss3Alt,
+  FaDatabase, FaCss3Alt,
 } from 'react-icons/fa';
 import {
-  TbLock, TbWallet, TbChartBar
+  TbWallet, TbChartBar
 } from 'react-icons/tb';
 import { VscCode } from 'react-icons/vsc';
 import { AnimatedTitle } from '../pages/Home';
@@ -23,23 +23,9 @@ const CATEGORIES = [
     accentSoft: 'rgba(0,242,254,0.12)',
     borderGlow: 'rgba(0,242,254,0.5)',
     skills: [
-      { name: 'Solidity',          icon: SiSolidity   },
-      { name: 'JavaScript',        icon: SiJavascript },
-      { name: 'Go',                icon: SiGo         },
-      { name: 'Rust (Basic)',      icon: SiRust       },
-    ],
-  },
-  {
-    id: 'blockchain',
-    title: 'Blockchain',
-    accent: '#a855f7',
-    accentSoft: 'rgba(168,85,247,0.12)',
-    borderGlow: 'rgba(168,85,247,0.5)',
-    skills: [
-      { name: 'Smart Contracts',   icon: TbLock       },
-      { name: 'Ethereum (Basic)',  icon: SiEthereum   },
-      { name: 'Hardhat (Basic)',   icon: FaHardHat    },
-      { name: 'MetaMask',          icon: TbWallet     },
+      { name: 'Solidity (Basic)',   icon: SiSolidity   },
+      { name: 'JavaScript (Basic)', icon: SiJavascript },
+      { name: 'Go (Basic)',         icon: SiGo         },
     ],
   },
   {
@@ -49,7 +35,6 @@ const CATEGORIES = [
     accentSoft: 'rgba(5,255,204,0.12)',
     borderGlow: 'rgba(5,255,204,0.5)',
     skills: [
-      { name: 'React.js',          icon: SiReact      },
       { name: 'HTML5',             icon: SiHtml5      },
       { name: 'CSS3',              icon: FaCss3Alt    },
     ],
@@ -76,6 +61,7 @@ const CATEGORIES = [
       { name: 'GitHub',            icon: SiGithub     },
       { name: 'VS Code',           icon: VscCode      },
       { name: 'Remix IDE',         icon: SiSolidity   },
+      { name: 'MetaMask',          icon: TbWallet     },
       { name: 'Docker (Basic)',    icon: SiDocker     },
       { name: 'Vercel',            icon: SiVercel     },
       { name: 'Power BI',          icon: TbChartBar   },
@@ -117,8 +103,10 @@ const SkillCard = ({ skill, accent, accentSoft, borderGlow }) => {
     <motion.div
       variants={cardVariants}
       whileHover={{
-        y: -8,
+        y: -10,
         scale: 1.05,
+        rotate: 1.5,
+        boxShadow: `0 0 25px ${accentSoft}, 0 8px 32px rgba(0,0,0,0.35)`,
         transition: { type: 'spring', stiffness: 300, damping: 18 },
       }}
       className="skill-glass-card"

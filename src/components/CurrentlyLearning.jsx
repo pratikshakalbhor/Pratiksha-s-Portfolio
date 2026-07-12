@@ -38,8 +38,10 @@ const CurrentlyLearning = () => {
                 viewport={{ once: true }}
                 transition={{ type: 'spring', stiffness: 100, damping: 15, delay: idx * 0.08 }}
                 whileHover={{
-                  y: -8,
-                  boxShadow: `0 0 25px ${item.statusColor}1A, 0 8px 32px rgba(0,0,0,0.37)`,
+                  y: -10,
+                  scale: 1.03,
+                  rotate: 1.5,
+                  boxShadow: `0 0 25px ${item.statusColor}2A, 0 8px 32px rgba(0,0,0,0.37)`,
                   borderColor: `${item.statusColor}50`
                 }}
                 className="group glassmorphism rounded-2xl p-6 border border-white/5 transition-all duration-300 shadow-xl flex flex-col gap-4 cursor-default"
