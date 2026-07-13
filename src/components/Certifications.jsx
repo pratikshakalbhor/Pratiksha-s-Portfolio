@@ -164,7 +164,7 @@ const Certifications = () => {
         </div>
 
         {/* 3D Carousel Container */}
-        <div className="relative w-full max-w-5xl mx-auto h-[360px] md:h-[480px] flex items-center justify-center">
+        <div className="relative w-full max-w-5xl mx-auto h-[300px] sm:h-[360px] md:h-[480px] flex items-center justify-center">
           {/* Navigation Arrows */}
           <button
             onClick={handleCarouselPrev}
@@ -197,7 +197,7 @@ const Certifications = () => {
                   }}
                   animate={getSlideStyle(index)}
                   transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-                  className="w-[300px] sm:w-[420px] md:w-[560px] aspect-[4/3] rounded-2xl glassmorphism border border-white/10 p-2.5 overflow-hidden shadow-2xl flex flex-col justify-between cursor-pointer select-none"
+                  className="w-[260px] sm:w-[300px] md:w-[420px] lg:w-[560px] aspect-[4/3] rounded-2xl glassmorphism border border-white/10 p-2.5 overflow-hidden shadow-2xl flex flex-col justify-between cursor-pointer select-none"
                   onClick={() => {
                     if (isActive) {
                       setSelectedIndex(index);
