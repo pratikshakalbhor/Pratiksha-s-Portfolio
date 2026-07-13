@@ -391,8 +391,8 @@ const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
       {/* Background Neon Orbs */}
-      <div className="absolute top-[20%] left-[10%] w-[350px] h-[350px] bg-primary/10 rounded-full blur-[100px] animate-pulse-slow pointer-events-none" />
-      <div className="absolute bottom-[20%] right-[15%] w-[450px] h-[450px] bg-secondary/10 rounded-full blur-[120px] animate-pulse-slow pointer-events-none" />
+      <div className="absolute top-[20%] left-[10%] w-[200px] md:w-[350px] h-[200px] md:h-[350px] bg-primary/10 rounded-full blur-[100px] animate-pulse-slow pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[15%] w-[250px] md:w-[450px] h-[250px] md:h-[450px] bg-secondary/10 rounded-full blur-[120px] animate-pulse-slow pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
         
