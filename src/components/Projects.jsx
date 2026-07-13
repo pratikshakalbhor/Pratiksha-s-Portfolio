@@ -209,20 +209,20 @@ const Projects = () => {
         </button>
 
         {/* Outer track borders gradient blend */}
-        <div className="absolute top-0 bottom-0 left-0 w-12 md:w-28 bg-gradient-to-r from-[#080B11] to-transparent z-25 pointer-events-none" />
-        <div className="absolute top-0 bottom-0 right-0 w-12 md:w-28 bg-gradient-to-l from-[#080B11] to-transparent z-25 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 left-0 w-4 sm:w-12 md:w-28 bg-gradient-to-r from-[#080B11] to-transparent z-25 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-4 sm:w-12 md:w-28 bg-gradient-to-l from-[#080B11] to-transparent z-25 pointer-events-none" />
 
         {/* Scrollable track containing layout elements */}
         <div
           ref={scrollContainerRef}
-          className="flex overflow-x-auto w-full gap-8 py-4 px-12 md:px-24 scrollbar-none z-10 relative scroll-smooth"
+          className="flex overflow-x-auto w-full gap-4 sm:gap-8 py-4 px-4 sm:px-12 md:px-24 scrollbar-none z-10 relative scroll-smooth"
         >
           {/* Double list map to enable endless scrolling loop */}
           {[...displayProjects, ...displayProjects].map((project, idx) => {
             const projectKey = `${project.id}-${idx}`;
 
             return (
-              <div key={projectKey} className="w-[300px] sm:w-[350px] md:w-[400px] shrink-0">
+              <div key={projectKey} className="w-[280px] sm:w-[350px] md:w-[400px] shrink-0">
                 <Tilt
                   tiltMaxAngleX={6}
                   tiltMaxAngleY={6}
