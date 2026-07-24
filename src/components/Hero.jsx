@@ -5,9 +5,8 @@ import { SiSolidity, SiEthereum } from 'react-icons/si';
 
 const roleStrings = [
   'Blockchain Developer',
-  'Solidity Engineer',
   'Frontend Developer',
-  'Web3 Builder',
+  'Web3 Developer',
 ];
 
 // Interactive 3D orbital blockchain atom component (Stable Atomic/Solar System Orbit)
