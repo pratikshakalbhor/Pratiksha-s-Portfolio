@@ -6,12 +6,10 @@ import { TbGitFork } from 'react-icons/tb';
 const GITHUB_USERNAME = 'pratikshakalbhor';
 
 const REPO_NAMES = [
-  'ecochain',
-  'freelance-chain',
-  'nft-dapp',
-  'dataproof',
-  'tokenomics-contracts',
-  'distributed-systems-practicals',
+  'Eco-App',
+  'FreelanceChain',
+  'nft_Dapp',
+  'DataProof',
 ];
 
 const LANGUAGE_COLORS = {
@@ -29,20 +27,20 @@ const LANGUAGE_COLORS = {
 const FALLBACK_REPOS = REPO_NAMES.map((name) => ({
   name,
   description:
-    name === 'ecochain'
+    name.toLowerCase() === 'eco-app' || name.toLowerCase() === 'ecochain'
       ? 'Blockchain-based platform for tree plantation, carbon credit tracking, and environmental transparency.'
-      : name === 'freelance-chain'
+      : name.toLowerCase() === 'freelancechain' || name.toLowerCase() === 'freelance-chain'
         ? 'Decentralized freelancing platform with Solidity escrow and milestone-based payments.'
-        : name === 'nft-dapp'
+        : name.toLowerCase() === 'nft_dapp' || name.toLowerCase() === 'nft-dapp'
           ? 'Decentralized NFT application for minting, managing, and exploring NFTs on Ethereum.'
-          : name === 'dataproof'
+          : name.toLowerCase() === 'dataproof'
             ? 'Blockchain document verification system for secure, tamper-proof validation of digital records.'
-            : name === 'tokenomics-contracts'
+            : name.toLowerCase() === 'tokenomics-contracts'
               ? 'Solidity smart contracts implementing ERC-20 tokens, staking, and reward mechanisms.'
               : 'University coursework covering distributed systems concepts and blockchain fundamentals.',
   html_url: `https://github.com/${GITHUB_USERNAME}/${name}`,
   stargazers_count: 0,
-  language: name === 'distributed-systems-practicals' ? 'Python' : 'Solidity',
+  language: name.toLowerCase() === 'distributed-systems-practicals' ? 'Python' : 'Solidity',
   forks_count: 0,
 }));
 
@@ -96,7 +94,7 @@ const RepoCard = ({ repo, idx }) => {
         </motion.span>
       </div>
 
-      <motion.p 
+      <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -151,23 +149,24 @@ const GitHubSection = () => {
         if (!res.ok) throw new Error('GitHub API unavailable');
         const all = await res.json();
 
-        // Build a map for O(1) lookup
+        // Build a map for case-insensitive lookup
         const repoMap = {};
-        all.forEach((r) => { repoMap[r.name] = r; });
+        all.forEach((r) => { repoMap[r.name.toLowerCase()] = r; });
 
         // Overlay fetched data onto fallback (keeps order + fills gaps)
-        const merged = FALLBACK_REPOS.map((fb) =>
-          repoMap[fb.name]
+        const merged = FALLBACK_REPOS.map((fb) => {
+          const matchedRepo = repoMap[fb.name.toLowerCase()];
+          return matchedRepo
             ? {
-              name: fb.name,
-              description: repoMap[fb.name].description || fb.description,
-              html_url: repoMap[fb.name].html_url,
-              stargazers_count: repoMap[fb.name].stargazers_count,
-              forks_count: repoMap[fb.name].forks_count,
-              language: repoMap[fb.name].language || fb.language,
+              name: matchedRepo.name, // Keep exact case from GitHub response
+              description: matchedRepo.description || fb.description,
+              html_url: matchedRepo.html_url,
+              stargazers_count: matchedRepo.stargazers_count,
+              forks_count: matchedRepo.forks_count,
+              language: matchedRepo.language || fb.language,
             }
-            : fb
-        );
+            : fb;
+        });
         setRepos(merged);
       } catch {
         /* silently keep fallback data */
@@ -248,9 +247,16 @@ const GitHubSection = () => {
             }}
             transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
             whileHover={{ scale: 1.05, rotate: 5 }}
-            aria-hidden="true"
           >
-            <FaGithub className="text-4xl text-gray-400" aria-hidden="true" />
+            <img
+              src={`https://github.com/${GITHUB_USERNAME}.png`}
+              alt={`${GITHUB_USERNAME} github avatar`}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '/images/profile.png';
+              }}
+            />
           </motion.div>
 
           {/* Profile Info */}
@@ -277,11 +283,10 @@ const GitHubSection = () => {
                     borderColor: 'rgba(0, 242, 254, 0.4)',
                     color: '#fff'
                   }}
-                  className={`text-xs font-mono px-3 py-1 rounded-full border transition-all duration-300 cursor-default ${
-                    tag.primary
+                  className={`text-xs font-mono px-3 py-1 rounded-full border transition-all duration-300 cursor-default ${tag.primary
                       ? 'text-primary bg-primary/10 border-primary/20'
                       : 'text-gray-400 bg-dark border-white/5'
-                  }`}
+                    }`}
                 >
                   {tag.label}
                 </motion.span>
