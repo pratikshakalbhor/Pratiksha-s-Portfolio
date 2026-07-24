@@ -44,7 +44,7 @@ export const projectsList = [
       'NFT Gallery',
     ],
     tags: ['Solidity', 'React.js', 'Hardhat', 'IPFS', 'MetaMask'],
-    github: 'https://github.com/pratikshakalbhor/nft-dapp',
+    github: 'https://github.com/pratikshakalbhor/nft_Dapp',
     demo: 'https://nft-dapp-sigma-red.vercel.app/',
   },
   {
@@ -61,7 +61,7 @@ export const projectsList = [
       'Dashboard',
     ],
     tags: ['React.js', 'JavaScript', 'Solidity', 'Hardhat', 'MongoDB', 'Tailwind CSS'],
-    github: 'https://github.com/pratikshakalbhor/ecochain',
+    github: 'https://github.com/pratikshakalbhor/Eco-App',
     demo: 'https://ecochain-tracker.vercel.app',
     underDevelopment: true,
   },
