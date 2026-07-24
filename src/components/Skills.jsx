@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import {
   SiSolidity, SiJavascript,
   SiMongodb, SiGit, SiGithub, SiHtml5, SiGo,
-  SiDocker, SiVercel
+  SiDocker, SiVercel, SiReact
 } from 'react-icons/si';
 import {
   FaDatabase, FaCss3Alt,
@@ -35,6 +35,7 @@ const CATEGORIES = [
     accentSoft: 'rgba(5,255,204,0.12)',
     borderGlow: 'rgba(5,255,204,0.5)',
     skills: [
+      { name: 'React.js',          icon: SiReact      },
       { name: 'HTML5',             icon: SiHtml5      },
       { name: 'CSS3',              icon: FaCss3Alt    },
     ],
