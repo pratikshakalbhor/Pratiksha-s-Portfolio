@@ -506,7 +506,7 @@ const Hero = () => {
                 </svg>
               </a>
               <a
-                href="mailto:pratikshakalbhor20@gmail.com"
+                href="mailto:kalbhorpratiksha333@gmail.com"
                 className="text-gray-400 hover:text-primary hover:scale-110 transition-all duration-300 text-2xl"
                 aria-label="Email"
               >

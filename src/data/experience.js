@@ -11,7 +11,7 @@ export const experienceList = [
   {
     id: 2,
     role: 'Personal Projects',
-    company: 'FreelanceChain, EcoChain, CryptoVault and NFT Marketplace',
+    company: 'FreelanceChain, EcoChain, and Stellar NFT Marketplace',
     duration: '2024 – Present',
     type: 'project',
     description:

@@ -25,7 +25,7 @@ export const skillCategories = [
     icon: TbHexagon,
     description: 'Building decentralized systems and smart contract logic on EVM-compatible chains.',
     skills: [
-      { name: 'Solidity', icon: SiSolidity },
+      { name: 'Solidity (Basic)', icon: SiSolidity },
       { name: 'Ethereum', icon: SiEthereum },
       { name: 'Smart Contracts', icon: TbLock },
       { name: 'Hardhat', icon: FaHardHat },

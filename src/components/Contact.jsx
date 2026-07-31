@@ -152,23 +152,15 @@ const Contact = () => {
                   <div>
                     <span className="text-xs text-gray-500 font-mono block">EMAIL</span>
                     <a
-                      href="mailto:pratikshakalbhor20@gmail.com"
+                      href="mailto:kalbhorpratiksha333@gmail.com"
                       className="text-white hover:text-primary transition-colors duration-300 font-medium text-sm md:text-base"
                     >
-                      pratikshakalbhor20@gmail.com
+                      kalbhorpratiksha333@gmail.com
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 group">
-                  <div className="w-12 h-12 rounded-xl bg-secondary/10 border border-secondary/20 flex items-center justify-center text-[#7928CA] text-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300" aria-hidden="true">
-                    <FaPhoneAlt />
-                  </div>
-                  <div>
-                    <span className="text-xs text-gray-500 font-mono block">PHONE</span>
-                    <span className="text-white font-medium text-sm md:text-base">+91 93077 75865</span>
-                  </div>
-                </div>
+
 
                 <div className="flex items-center gap-4 group">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary text-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300" aria-hidden="true">

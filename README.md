@@ -137,7 +137,7 @@ src/
 
 | | |
 |---|---|
-| 📧 Email | [pratikshakalbhor20@gmail.com](mailto:pratikshakalbhor20@gmail.com) |
+| 📧 Email | [kalbhorpratiksha333@gmail.com](mailto:kalbhorpratiksha333@gmail.com) |
 | 🔗 LinkedIn | [linkedin.com/in/pratikshakalbhor](https://linkedin.com/in/pratikshakalbhor) |
 | 🐙 GitHub | [github.com/pratikshakalbhor](https://github.com/pratikshakalbhor) |
 | 🐦 Twitter/X | [x.com/pratikshaK61510](https://x.com/pratikshaK61510) |

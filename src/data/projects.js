@@ -4,14 +4,14 @@ export const projectsList = [
     title: 'DataProof',
     category: 'Blockchain Document Verification',
     overview:
-      'A blockchain-based document verification system that ensures secure and tamper-proof validation of digital records.',
+      'Secure certificate verification using Solidity smart contracts. MetaMask authentication and SHA-256 document hashing. Tech Stack: Solidity, React, MongoDB, Go',
     features: [
       'Document Verification',
       'Hash Generation',
       'Secure Storage',
       'Verification Dashboard',
     ],
-    tags: ['Solidity', 'React.js', 'MongoDB', 'JavaScript'],
+    tags: ['Solidity', 'React.js', 'MongoDB', 'Go'],
     github: 'https://github.com/pratikshakalbhor/DataProof',
     demo: 'https://file-proof.vercel.app/',
   },
@@ -20,14 +20,14 @@ export const projectsList = [
     title: 'FreelanceChain',
     category: 'Web3 Freelancing Platform',
     overview:
-      'A decentralized freelancing platform that uses Solidity smart contracts for secure payments and milestone-based transactions.',
+      'Decentralized freelancing platform with wallet integration. Tech Stack: Rust, React, Soroban',
     features: [
       'Smart Escrow',
       'Wallet Connection',
       'Milestone Payments',
       'Client & Freelancer Dashboard',
     ],
-    tags: ['Solidity', 'React.js', 'Hardhat', 'Ethers.js', 'MongoDB'],
+    tags: ['Rust', 'React.js', 'Soroban'],
     github: 'https://github.com/pratikshakalbhor/FreelanceChain',
     demo: 'https://freelancechain-dapp.vercel.app/',
   },
@@ -36,23 +36,23 @@ export const projectsList = [
     title: 'Stellar NFT Marketplace',
     category: 'Web3 NFT Marketplace',
     overview:
-      'A decentralized NFT application where users can mint, manage, and explore NFTs using Ethereum smart contracts.',
+      'NFT marketplace with Soroban smart contracts and wallet integration. Tech Stack: Rust, React, Soroban',
     features: [
       'NFT Minting',
       'Wallet Authentication',
       'IPFS Storage',
       'NFT Gallery',
     ],
-    tags: ['Solidity', 'React.js', 'Hardhat', 'IPFS', 'MetaMask'],
+    tags: ['Rust', 'React.js', 'Soroban'],
     github: 'https://github.com/pratikshakalbhor/nft_Dapp',
     demo: 'https://nft-dapp-sigma-red.vercel.app/',
   },
   {
     id: 'ecochain',
-    title: 'EcoChain',
+    title: 'EcoChain — Blockchain-based Carbon Credit Platform',
     category: 'Blockchain + Sustainability',
     overview:
-      'A blockchain-based platform for tree plantation, carbon credit tracking, and environmental transparency using smart contracts.',
+      'Blockchain-based platform for tree plantation tracking and carbon credit management. Tech Stack: Solidity, React, MongoDB, Go',
     features: [
       'Tree Plantation Tracking',
       'Carbon Credit System',
@@ -60,10 +60,9 @@ export const projectsList = [
       'User Authentication',
       'Dashboard',
     ],
-    tags: ['React.js', 'JavaScript', 'Solidity', 'Hardhat', 'MongoDB', 'Tailwind CSS'],
+    tags: ['Solidity', 'React.js', 'MongoDB', 'Go'],
     github: 'https://github.com/pratikshakalbhor/Eco-App',
     demo: 'https://ecochain-tracker.vercel.app',
-    underDevelopment: true,
   },
   {
     id: 'tokenomics',
