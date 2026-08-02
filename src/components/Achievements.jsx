@@ -1,15 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaDatabase } from 'react-icons/fa';
-import { SiSolidity } from 'react-icons/si';
+import { SiSolidity, SiPython } from 'react-icons/si';
 
 const achievementsList = [
   {
     id: 1,
     title: 'Samsung Innovation Campus Graduate',
-    icon: FaDatabase,
+    icon: SiPython,
     date: '2025',
-    description: 'Successfully completed the Samsung Innovation Campus program focused on programming, SQL, and data analytics.',
+    description: 'Successfully completed the Samsung Innovation Campus program focused on programming, python',
     color: '#00F2FE',
   },
   {

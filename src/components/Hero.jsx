@@ -52,14 +52,12 @@ const BlockchainOrb = () => {
     { rx: 232, ry: 74, rotateBase: -35, duration: 17, color: 'rgba(5,255,204,0.3)',  clockwise: true },
   ];
 
-  // Distribute the 6 nodes exactly back-to-back on the 3 orbital rings
+  // Distribute the 4 nodes exactly on the 3 orbital rings
   const orbNodes = [
     { label: 'Solidity',  ringIndex: 0, phaseOffset: 0,            color: '#00F2FE', size: 11 },
     { label: 'Hardhat',   ringIndex: 0, phaseOffset: Math.PI,     color: '#05FFCC', size: 9  },
     { label: 'React',     ringIndex: 1, phaseOffset: 0,            color: '#A855F7', size: 10 },
-    { label: 'IPFS',      ringIndex: 1, phaseOffset: Math.PI,     color: '#A855F7', size: 10 },
     { label: 'Web3.js',   ringIndex: 2, phaseOffset: 0,            color: '#00F2FE', size: 12 },
-    { label: 'Ethers.js', ringIndex: 2, phaseOffset: Math.PI,     color: '#00F2FE', size: 11 },
   ];
 
   // Mathematical mapping of node positions tracing the tilted ellipse paths
